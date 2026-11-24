@@ -1,0 +1,2590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="briefing">
+  <title>Taranis Black — Estrategia Integral de IA, Marketing, Gobernanza LGPD y Retorno NR-17</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces: Briefing warm stone-white paper */
+      --background: #faf9f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #f1efe8;
+      --surface-container-high: #e6e2d6;
+
+      /* Ink */
+      --on-surface: #17181a;
+      --on-surface-variant: #56585c;
+
+      /* Rules */
+      --outline: #17181a;
+      --outline-variant: #dedad0;
+
+      /* Accents */
+      --primary: #17181a;
+      --on-primary: #faf9f5;
+      --primary-container: #f2b705;
+      --on-primary-container: #17181a;
+      --secondary: #1f4e5f;
+      --tertiary: #785008;
+      --error: #b42318;
+      --on-error: #ffffff;
+
+      /* Supporting Briefing surfaces */
+      --tag-warm-bg: #f5e6c4;
+      --btn-secondary-border: #c8c4b8;
+      --positive-bg: #e7f3ed;
+      --error-bg: #fbeae8;
+      --secondary-soft: #e8eff2;
+
+      /* Data series */
+      --data-1: #1f4e5f;
+      --data-2: #d99000;
+      --data-3: #2b6e52;
+      --data-4: #b84a39;
+      --data-context: #c4bfb2;
+
+      /* Fonts */
+      --font-headline: 'Source Serif 4', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', monospace;
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+
+      /* Style effects */
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.02em;
+      --label-tracking: 0.08em;
+
+      /* Semantic */
+      --positive: #2b6e52;
+      --warning: #785008;
+      --focus: #1f4e5f;
+
+      /* Narrative Type Scale */
+      --display-size: clamp(2.25rem, 1.45rem + 3vw, 3.6rem);
+      --headline-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem);
+      --subhead-size: clamp(1.15rem, 1.02rem + 0.45vw, 1.375rem);
+      --body-size: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2.5px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography helpers */
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.12;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .subhead-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .standfirst {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      line-height: 1.45;
+      color: var(--secondary);
+      margin: var(--space-md) 0 0;
+      max-width: 68ch;
+    }
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .muted-note {
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Briefing Dossier Bar */
+    .dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .dossier-bar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.6875rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--badge-radius);
+      display: inline-block;
+    }
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--secondary);
+      letter-spacing: 0.06em;
+    }
+
+    /* Masthead & Navigation */
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+    }
+    .toc-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding: var(--space-sm) 0;
+      border-top: var(--card-border);
+      border-bottom: var(--card-border);
+    }
+    .toc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      text-decoration: none;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .toc-link:hover {
+      background: var(--surface-container);
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+
+    /* Figure cards & KPI strip */
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .figure-card .value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(1.65rem, 1.35rem + 1vw, 2.2rem);
+      line-height: 1.1;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .asymmetric-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .asymmetric-grid-reverse {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    /* Aside / methodology callout */
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    /* Tags & Status Pills */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tag-warm {
+      background: var(--tag-warm-bg);
+      color: var(--tertiary);
+    }
+    .tag-petrol {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+    }
+    .tag-positive {
+      background: var(--positive-bg);
+      color: var(--positive);
+    }
+    .tag-error {
+      background: var(--error-bg);
+      color: var(--error);
+    }
+    .tag-gold {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover {
+      background: var(--secondary);
+    }
+    .btn-secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-color: var(--btn-secondary-border);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container);
+    }
+    .btn-active {
+      background: var(--secondary);
+      color: var(--on-primary);
+      border-color: var(--secondary);
+    }
+    .btn-danger-outline {
+      background: var(--surface-container-low);
+      color: var(--error);
+      border-color: var(--error);
+    }
+    .btn-danger-outline:hover {
+      background: var(--error-bg);
+    }
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    /* Inputs & Controls */
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .control-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--on-surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+    }
+    .control-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 115px;
+      gap: var(--space-sm);
+      align-items: end;
+    }
+    input[type="number"],
+    input[type="text"],
+    select,
+    textarea {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      background: var(--surface-container-low);
+      border: 1px solid var(--btn-secondary-border);
+      border-radius: var(--rounded);
+      min-height: 44px;
+      padding: 0.5rem 0.75rem;
+      width: 100%;
+    }
+    select {
+      padding-right: 2rem;
+    }
+    input[type="range"] {
+      width: 100%;
+      min-height: 44px;
+      accent-color: var(--secondary);
+      cursor: pointer;
+    }
+
+    /* Tables */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+    th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--on-surface-variant);
+      background: var(--surface-container);
+      border-bottom: var(--section-rule);
+      padding: var(--space-sm) var(--space-md);
+      white-space: nowrap;
+    }
+    td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .num-cell {
+      font-family: var(--font-label);
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* Interactive Section Specifics */
+    .section-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .section-header-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-sm);
+    }
+
+    /* Use-case selector list */
+    .usecase-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .usecase-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: center;
+      min-height: 44px;
+      transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .usecase-btn:hover {
+      background: var(--surface-container);
+    }
+    .usecase-btn.is-selected {
+      background: var(--surface-container-low);
+      box-shadow: inset 4px 0 0 var(--secondary), 0 0 0 1px var(--secondary);
+    }
+
+    /* Effort x Impact Matrix Grid */
+    .matrix-board {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-sm);
+      background: var(--surface-container);
+      padding: var(--space-md);
+      border-radius: var(--rounded-lg);
+      border: var(--card-border);
+    }
+    .quadrant-box {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      min-height: 155px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .quadrant-box.priority-high {
+      border-top: 3px solid var(--positive);
+    }
+    .quadrant-box.priority-strategic {
+      border-top: 3px solid var(--secondary);
+    }
+    .quadrant-box.priority-tactical {
+      border-top: 3px solid var(--tertiary);
+    }
+    .quadrant-box.priority-deferred {
+      border-top: 3px solid var(--data-context);
+    }
+    .matrix-chip {
+      text-align: left;
+      background: var(--surface-container);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      cursor: pointer;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .matrix-chip:hover {
+      background: var(--surface-container-high);
+    }
+    .matrix-chip.is-active {
+      background: var(--secondary);
+      color: var(--on-primary);
+      border-color: var(--secondary);
+    }
+
+    /* Checklist LGPD */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      min-height: 44px;
+    }
+    .check-item:hover {
+      background: var(--surface-container);
+    }
+    .check-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      min-height: 20px;
+      margin-top: 0.15rem;
+      accent-color: var(--positive);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Channel Studio Output */
+    .studio-output {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: 3px solid var(--secondary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .generated-copy {
+      white-space: pre-wrap;
+      font-family: var(--font-body);
+      font-size: 0.96rem;
+      line-height: 1.62;
+      color: var(--on-surface);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      margin: 0;
+    }
+    .pill-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    /* Product cards & container query */
+    .product-wrapper {
+      container-type: inline-size;
+    }
+    .product-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-md);
+    }
+    @container (min-width: 540px) {
+      .product-inner {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      }
+    }
+
+    /* Chart container */
+    .chart-box {
+      position: relative;
+      width: 100%;
+      min-height: 320px;
+      height: 320px;
+    }
+
+    /* Inline feedback notice */
+    .status-banner {
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .status-banner.positive {
+      background: var(--positive-bg);
+      color: var(--positive);
+    }
+    .status-banner.warning {
+      background: var(--tag-warm-bg);
+      color: var(--tertiary);
+    }
+
+    /* Reveal animation */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 860px) {
+      .asymmetric-grid,
+      .asymmetric-grid-reverse {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      .matrix-board {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .control-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-section {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- MASTHEAD & EXECUTIVE BRIEFING HEADER -->
+    <header class="masthead">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">Dossier Estratégico</span>
+          <span class="dossier-meta">Taranis Black · Año Fiscal 2026 · Ruta 0 + Ruta 2</span>
+        </div>
+        <span class="dossier-meta">Ergonomía Activa, IA y Gobernanza NR-17 / LGPD</span>
+      </div>
+
+      <div>
+        <h1 class="title">Arquitectura de Inteligencia Artificial, Voz Multicanal y Retorno Ergonómico de Taranis Black</h1>
+        <p class="standfirst">
+          Plan maestro de transformación operativa para escalar un equipo de marketing de cuatro personas, blindar el cumplimiento normativo bajo LGPD y NR-17, y cuantificar el retorno financiero de eliminar el ausentismo por LER/DORT en entornos híbridos.
+        </p>
+      </div>
+
+      <!-- Executive KPI Baseline from Source Data -->
+      <div class="kpi-grid" aria-label="Indicadores corporativos base">
+        <div class="figure-card">
+          <div class="dossier-meta">Facturación Anual Base</div>
+          <div class="value">USD 48,0M</div>
+          <p class="muted-note">280 colaboradores en modelo híbrido corporativo</p>
+        </div>
+        <div class="figure-card">
+          <div class="dossier-meta">Turnover General (RR. HH.)</div>
+          <div class="value">22,5%</div>
+          <p class="muted-note">Costo de alejamiento LER/DORT: hasta 3x salario mensual</p>
+        </div>
+        <div class="figure-card">
+          <div class="dossier-meta">Célula de Marketing (Ruta 2)</div>
+          <div class="value">4 Personas</div>
+          <p class="muted-note">LinkedIn, Instagram, TikTok y blog; SLA actual &gt; 24 h</p>
+        </div>
+        <div class="figure-card">
+          <div class="dossier-meta">Protección NR-17 e ISO</div>
+          <div class="value">3 a 5 Años</div>
+          <p class="muted-note">Garantía estructural + informe técnico PDF acreditado</p>
+        </div>
+      </div>
+
+      <nav class="toc-strip" aria-label="Navegación de capítulos">
+        <a class="toc-link" href="#cap-01"><span class="index-num">01</span> AI Canvas y Matriz</a>
+        <a class="toc-link" href="#cap-02"><span class="index-num">02</span> Gobernanza LGPD</a>
+        <a class="toc-link" href="#cap-03"><span class="index-num">03</span> Estudio de Voz Multicanal</a>
+        <a class="toc-link" href="#cap-04"><span class="index-num">04</span> Portafolio NR-17 y Fletes</a>
+        <a class="toc-link" href="#cap-05"><span class="index-num">05</span> Simuladores ROI y Viabilidad</a>
+      </nav>
+    </header>
+
+    <!-- CHAPTER 01: RUTA 0 — AI CANVAS & PRIORIZATION MATRIX -->
+    <section id="cap-01" class="section-block reveal-section">
+      <div class="section-header-grid">
+        <div class="dossier-bar">
+          <div class="dossier-bar-left">
+            <span class="dossier-pill">Ruta 0 · Etapa 1 y 2</span>
+            <span class="dossier-meta">Base Estratégica Obligatoria · AI Canvas</span>
+          </div>
+          <span class="index-num">CAPÍTULO 01</span>
+        </div>
+        <h2 class="section-title">Cuatro iniciativas de IA resuelven los cuellos de botella de cuatro personas sin sacrificar el criterio humano</h2>
+        <p class="prose">
+          El equipo de marketing sostiene cuatro canales simultáneos con pérdida de consistencia verbal, demoras superiores a 24 horas en respuestas sociales y dependencia de profesionales independientes para piezas visuales. El AI Canvas clasifica cada oportunidad según el tipo de inteligencia artificial requerida y define dónde la supervisión humana (<em>Human-in-the-Loop</em>) es obligatoria.
+        </p>
+      </div>
+
+      <div class="asymmetric-grid">
+        <!-- Left: Interactive Use Cases -->
+        <div class="section-block">
+          <div class="usecase-list" role="listbox" aria-label="Casos de uso AI Canvas">
+            <button type="button" class="usecase-btn is-selected" id="uc-btn-0" onclick="selectUseCase(0)">
+              <span class="index-num">01</span>
+              <div>
+                <strong>Asistente Multicanal de Voz y Respuesta (Gem / GPT)</strong>
+                <div class="muted-note">Transformación de artículo-semente y triaje de consultas en redes</div>
+              </div>
+              <span class="tag tag-petrol">IA Generativa</span>
+            </button>
+
+            <button type="button" class="usecase-btn" id="uc-btn-1" onclick="selectUseCase(1)">
+              <span class="index-num">02</span>
+              <div>
+                <strong>Dirección Visual Interna y Maquetas Arquitectónicas</strong>
+                <div class="muted-note">Sustitución de freelancers para carruseles sobrios y fichas de producto</div>
+              </div>
+              <span class="tag tag-petrol">IA Generativa</span>
+            </button>
+
+            <button type="button" class="usecase-btn" id="uc-btn-2" onclick="selectUseCase(2)">
+              <span class="index-num">03</span>
+              <div>
+                <strong>Scoring Predictivo de Leads B2B y Alerta de Turnover</strong>
+                <div class="muted-note">Cruce de 20 cuentas CRM con riesgo ergonómico y rotación del 22,5%</div>
+              </div>
+              <span class="tag tag-warm">IA Predictiva</span>
+            </button>
+
+            <button type="button" class="usecase-btn" id="uc-btn-3" onclick="selectUseCase(3)">
+              <span class="index-num">04</span>
+              <div>
+                <strong>Validador Automático de Reglas NR-17, Fletes CIF/FOB y Cotización</strong>
+                <div class="muted-note">Cálculo determinista de garantías, plazos regionales y documentación PDF</div>
+              </div>
+              <span class="tag tag-positive">IA Tradicional</span>
+            </button>
+          </div>
+
+          <!-- Detail inspector for selected use case -->
+          <div class="figure-card" id="uc-detail-panel" aria-live="polite"></div>
+        </div>
+
+        <!-- Right: Effort vs Impact Interactive Matrix -->
+        <div class="section-block">
+          <div class="figure-card">
+            <div class="dossier-bar">
+              <div class="dossier-bar-left">
+                <span class="index-num">MATRIZ ESFUERZO × IMPACTO</span>
+              </div>
+              <span class="dossier-meta">Orden de Despliegue</span>
+            </div>
+            <p class="muted-note" style="margin-bottom: var(--space-md);">
+              Haz clic en cualquier iniciativa dentro de los cuadrantes para inspeccionar su impacto operativo, las horas ahorradas y las medidas de gestión del cambio.
+            </p>
+
+            <div class="matrix-board">
+              <div class="quadrant-box priority-high">
+                <span class="tag tag-positive">Alto Impacto · Bajo Esfuerzo</span>
+                <strong style="font-size: 0.9rem;">Victorias Rápidas (Mes 1)</strong>
+                <button type="button" class="matrix-chip is-active" id="mx-chip-0" onclick="selectUseCase(0)">
+                  <span>01 · Gem Multicanal</span>
+                  <span>Prioridad 1</span>
+                </button>
+                <button type="button" class="matrix-chip" id="mx-chip-3" onclick="selectUseCase(3)">
+                  <span>04 · Reglas NR-17/CIF</span>
+                  <span>Prioridad 2</span>
+                </button>
+              </div>
+
+              <div class="quadrant-box priority-strategic">
+                <span class="tag tag-petrol">Alto Impacto · Mayor Esfuerzo</span>
+                <strong style="font-size: 0.9rem;">Proyectos Estratégicos (Mes 2–3)</strong>
+                <button type="button" class="matrix-chip" id="mx-chip-2" onclick="selectUseCase(2)">
+                  <span>03 · Scoring CRM y RR. HH.</span>
+                  <span>Prioridad 3</span>
+                </button>
+              </div>
+
+              <div class="quadrant-box priority-tactical">
+                <span class="tag tag-warm">Impacto Medio · Bajo Esfuerzo</span>
+                <strong style="font-size: 0.9rem;">Apoyo Táctico (Mes 1–2)</strong>
+                <button type="button" class="matrix-chip" id="mx-chip-1" onclick="selectUseCase(1)">
+                  <span>02 · Estudio Visual IA</span>
+                  <span>Prioridad 2</span>
+                </button>
+              </div>
+
+              <div class="quadrant-box priority-deferred">
+                <span class="tag tag-petrol">Impacto Bajo · Alto Esfuerzo</span>
+                <strong style="font-size: 0.9rem;">Diferidos / Descartados</strong>
+                <p class="muted-note">Chatbots autónomos sin supervisión en negociaciones B2B &gt; USD 35.000 o emisión automática de dictámenes NR-17 sin firma de ingeniero.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="aside-box">
+            <div class="dossier-meta" style="margin-bottom: var(--space-xs);">Plan de Gestión del Cambio (Equipo de 4 Personas)</div>
+            <p class="muted-note">
+              Para eliminar la resistencia al cambio: (1) talleres prácticos semanales sobre el artículo-semente y prompts verificados; (2) designación de un especialista de IA dentro de las 4 plazas existentes sin reducir plantilla; (3) publicación de la política de no-sustitución orientada a liberar horas creativas para estrategia B2B y cuentas clave.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 02: RUTA 0 ETAPA 3 — LGPD & RESPONSIBLE AI GOVERNANCE -->
+    <section id="cap-02" class="section-block reveal-section">
+      <div class="section-header-grid">
+        <div class="dossier-bar">
+          <div class="dossier-bar-left">
+            <span class="dossier-pill">Ruta 0 · Etapa 3</span>
+            <span class="dossier-meta">Gobernanza Ética, LGPD y Auditoría</span>
+          </div>
+          <span class="index-num">CAPÍTULO 02</span>
+        </div>
+        <h2 class="section-title">Fronteras estrictas entre datos públicos de catálogo y datos personales sensibles bajo la LGPD</h2>
+        <p class="prose">
+          Taranis Black procesa información sensible en dos frentes críticos: los registros de 280 colaboradores (salarios, eNPS, ausentismo médico y feedbacks de salida) y los 20 prospectos corporativos del CRM. La política de IA responsable establece reglas verificables para evitar filtraciones, sesgos y alucinaciones normativas.
+        </p>
+      </div>
+
+      <div class="asymmetric-grid-reverse">
+        <!-- Left: Governance Matrix Table -->
+        <div class="section-block">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Dimensión de Gobernanza</th>
+                  <th>Permitido con Supervisión</th>
+                  <th>Estrictamente Prohibido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Datos de Colaboradores (RR. HH.)</strong></td>
+                  <td>Tasas agregadas y anonimizadas (ej.: turnover 22,5%, índices por área sin ID personal).</td>
+                  <td>Cargar nombres, CPF, salarios individuales o diagnósticos médicos LER/DORT en LLMs públicos.</td>
+                </tr>
+                <tr>
+                  <td><strong>Prospectos B2B (CRM)</strong></td>
+                  <td>Segmentación por sector (Fintech, Industria, Logística, Salud) y dolores operativos genéricos.</td>
+                  <td>Ingresar datos personales de decisores, contratos confidenciales o historial crediticio sin anonimizar.</td>
+                </tr>
+                <tr>
+                  <td><strong>Afirmaciones Clínicas y NR-17</strong></td>
+                  <td>Uso de cifras verificadas del catálogo (32 dB ISO 23351-1, ABERGO, ANSI/BIFMA X5.1).</td>
+                  <td>Emitir diagnósticos médicos, promesas de cura o sustituir la firma del Ingeniero en informes NR-17.</td>
+                </tr>
+                <tr>
+                  <td><strong>Propiedad y Sesgo Visual</strong></td>
+                  <td>Generación de fondos minimalistas y maquetas conceptuales con revisión de fidelidad de producto.</td>
+                  <td>Publicar renders con mecanismos inexistentes o sesgos excluyentes de representación corporal.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="figure-card">
+            <div class="dossier-bar">
+              <div class="dossier-bar-left">
+                <span class="index-num">COMITÉ DE ÉTICA Y CADENCIA DE AUDITORÍA</span>
+              </div>
+              <span class="dossier-meta">Gobernanza Corporativa</span>
+            </div>
+            <div class="card-grid" style="gap: var(--space-md);">
+              <div>
+                <div class="dossier-meta">Integrantes del Comité</div>
+                <p class="muted-note" style="margin-top: var(--space-xs);">
+                  Dirección de Marketing (Líder Ruta 2), Encargado de Protección de Datos (DPO / Jurídico), Gerencia de People Analytics, Seguridad de la Información (TI) e Ingeniero Ergonomista Jefe.
+                </p>
+              </div>
+              <div>
+                <div class="dossier-meta">Frecuencia de Auditoría</div>
+                <p class="muted-note" style="margin-top: var(--space-xs);">
+                  Revisión mensual aleatoria del 15% de los prompts y respuestas en redes (verificación de sesgo y tono); auditoría trimestral formal de cumplimiento LGPD, contratos de API empresarial y validez de informes NR-17.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive LGPD + HITL Pre-Publication Checklist -->
+        <div class="figure-card">
+          <div class="dossier-bar">
+            <div class="dossier-bar-left">
+              <span class="index-num">PROTOCOLO PRE-PUBLICACIÓN</span>
+            </div>
+            <span class="tag tag-petrol" id="lgpd-score-badge">0 / 5 Verificados</span>
+          </div>
+          <p class="muted-note" style="margin-bottom: var(--space-md);">
+            Simula la validación Human-in-the-Loop (HITL) y LGPD antes de liberar cualquier pieza de marketing o análisis de datos asistido por IA.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm);" id="lgpd-checklist">
+            <label class="check-item">
+              <input type="checkbox" id="chk-lgpd-0" onchange="toggleGovernanceCheck(0, this.checked)">
+              <div>
+                <strong>1. Anonimización LGPD confirmada</strong>
+                <div class="muted-note">Ningún dato personal (PII), salario individual ni historial médico LER/DORT fue enviado al asistente.</div>
+              </div>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="chk-lgpd-1" onchange="toggleGovernanceCheck(1, this.checked)">
+              <div>
+                <strong>2. Respaldo técnico y biomecánico verificado</strong>
+                <div class="muted-note">Cada cifra citada (NR-17, ABERGO, ISO 23351-1, 32 dB o +15–22% cognitivo) coincide con el catálogo oficial.</div>
+              </div>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="chk-lgpd-2" onchange="toggleGovernanceCheck(2, this.checked)">
+              <div>
+                <strong>3. Fidelidad visual del mobiliario</strong>
+                <div class="muted-note">La pieza respeta las especificaciones reales (brazos 4D, mesh termoplástico, dimensiones de cabina Silence).</div>
+              </div>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="chk-lgpd-3" onchange="toggleGovernanceCheck(3, this.checked)">
+              <div>
+                <strong>4. Auditoría de los 4 pilares de voz</strong>
+                <div class="muted-note">Tono científico, empático, sofisticado y sencillo; libre de adjetivos vacíos o descuentos agresivos.</div>
+              </div>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="chk-lgpd-4" onchange="toggleGovernanceCheck(4, this.checked)">
+              <div>
+                <strong>5. Registro de trazabilidad humana</strong>
+                <div class="muted-note">El responsable del equipo de 4 personas aprobó la salida final antes de su publicación o envío B2B.</div>
+              </div>
+            </label>
+          </div>
+
+          <div id="lgpd-status-banner" class="status-banner warning" style="margin-top: var(--space-md);" aria-live="polite">
+            <span>Completa los 5 controles para habilitar la publicación conforme a la política interna.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 03: RUTA 2 — BRAND VOICE MANUAL & MULTICHANNEL AI STUDIO -->
+    <section id="cap-03" class="section-block reveal-section">
+      <div class="section-header-grid">
+        <div class="dossier-bar">
+          <div class="dossier-bar-left">
+            <span class="dossier-pill">Ruta 2 · Etapa 1 y 2</span>
+            <span class="dossier-meta">Manual de Identidad Verbal y Estudio de Contenido</span>
+          </div>
+          <span class="index-num">CAPÍTULO 03</span>
+        </div>
+        <h2 class="section-title">Cuatro pilares de identidad verbal transforman un artículo técnico en campañas multicanal consistentes</h2>
+        <p class="prose">
+          Taranis Black no comercializa sillas genéricas; diseña infraestructura ergonómica que protege el capital humano. Para unificar la voz de las cuatro personas de marketing en LinkedIn, Instagram/TikTok y correo corporativo, el manual oficial fija cuatro atributos innegociables y prohíbe el lenguaje promocional barato.
+        </p>
+      </div>
+
+      <!-- 4 Voice Pillars -->
+      <div class="card-grid" aria-label="Cuatro pilares del tono de voz">
+        <div class="figure-card">
+          <span class="index-num">PILAR 01</span>
+          <h3 class="subhead-title" style="margin-top: var(--space-xs);">Científico y fundamentado</h3>
+          <p class="muted-note" style="margin-top: var(--space-xs);">
+            Argumentos basados en biomecánica, vértebras L4–L5 y S1, informes NR-17, ABERGO, normas ISO 23351-1 y estudios clínicos (Univ. de Pittsburgh, British Journal of Sports Medicine, UC Irvine). Cero adjetivos vacíos.
+          </p>
+        </div>
+        <div class="figure-card">
+          <span class="index-num">PILAR 02</span>
+          <h3 class="subhead-title" style="margin-top: var(--space-xs);">Empático y humano</h3>
+          <p class="muted-note" style="margin-top: var(--space-xs);">
+            Comprende el dolor cervical, la fatiga estática (caída del 40% en circulación pélvica tras la tercera hora) y la sobrecarga cognitiva en open space. Habla como aliado de la salud laboral.
+          </p>
+        </div>
+        <div class="figure-card">
+          <span class="index-num">PILAR 03</span>
+          <h3 class="subhead-title" style="margin-top: var(--space-xs);">Sofisticado y premium</h3>
+          <p class="muted-note" style="margin-top: var(--space-xs);">
+            Diseño minimalista, acabados nobles e ingeniería alemana/italiana. Vocabulario ejecutivo para dialogar de igual a igual con C-Level, directores de RR. HH., Facilities y arquitectos.
+          </p>
+        </div>
+        <div class="figure-card">
+          <span class="index-num">PILAR 04</span>
+          <h3 class="subhead-title" style="margin-top: var(--space-xs);">Sencillo y accesible</h3>
+          <p class="muted-note" style="margin-top: var(--space-xs);">
+            Traduce la ergonomía avanzada sin hermetismo médico ni juridiqués complejo, explicando con claridad el impacto real de cada ajuste lumbar, brazo 4D o motor eléctrico silencioso.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Multichannel Voice Studio -->
+      <div class="asymmetric-grid">
+        <div class="figure-card" style="display: flex; flex-direction: column; gap: var(--space-md);">
+          <div class="dossier-bar">
+            <div class="dossier-bar-left">
+              <span class="index-num">ESTUDIO DE TRANSFORMACIÓN MULTICANAL</span>
+            </div>
+            <span class="dossier-meta">Motor Artículo-Semente</span>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="studio-topic">1. Núcleo del Artículo-Semente (Contenido Fuente)</label>
+            <select id="studio-topic" onchange="updateVoiceStudio()">
+              <option value="ler">01 · Coste oculto del ausentismo LER/DORT (3x salario mensual)</option>
+              <option value="ergopro">02 · Falacia del confort pasivo vs. Ergonomía Activa ErgoPro (-40% fatiga)</option>
+              <option value="smartdesk">03 · Alternancia Sit-Stand SmartDesk (+15% a 22% energía cognitiva)</option>
+              <option value="silence">04 · Acústica Silence 32 dB y recuperación del Flow (23 min 15 seg)</option>
+              <option value="nr17">05 · ROI estratégico y protección ante auditorías NR-17</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">2. Canal de Distribución Objetivo</span>
+            <div class="pill-tabs" role="group" aria-label="Selector de canal">
+              <button type="button" class="btn btn-active" id="ch-btn-linkedin" onclick="setStudioChannel('linkedin')">LinkedIn B2B</button>
+              <button type="button" class="btn btn-secondary" id="ch-btn-instagram" onclick="setStudioChannel('instagram')">Instagram / TikTok</button>
+              <button type="button" class="btn btn-secondary" id="ch-btn-email" onclick="setStudioChannel('email')">E-mail Nutrición</button>
+              <button type="button" class="btn btn-secondary" id="ch-btn-prompt" onclick="setStudioChannel('prompt')">Prompt Gem / GPT</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="studio-angle">3. Énfasis para el Decisor</label>
+            <select id="studio-angle" onchange="updateVoiceStudio()">
+              <option value="exec">Financiero / ROI y Continuidad Operativa (C-Level y Finanzas)</option>
+              <option value="clinical">Biomecánica y Salud Preventiva (RR. HH. y Ergonomía)</option>
+              <option value="arch">Diseño Arquitectónico y Bienestar Híbrido (Facilities y Arquitectura)</option>
+            </select>
+          </div>
+
+          <div class="aside-box" style="margin-top: var(--space-xs);">
+            <div class="dossier-meta">Pauta de Dirección Visual sin Freelancers</div>
+            <p class="muted-note" id="studio-visual-prompt" style="margin-top: var(--space-xs);"></p>
+          </div>
+        </div>
+
+        <div class="studio-output">
+          <div class="dossier-bar" style="margin-bottom: 0;">
+            <div class="dossier-bar-left">
+              <span class="tag tag-gold" id="studio-channel-badge">LinkedIn B2B</span>
+              <span class="dossier-meta" id="studio-audience-meta">Decisores C-Level, RR. HH. y Facilities</span>
+            </div>
+            <button type="button" class="btn btn-secondary" id="copy-studio-btn" onclick="copyStudioOutput()">Copiar texto</button>
+          </div>
+
+          <pre class="generated-copy" id="studio-generated-text"></pre>
+
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center;">
+            <span class="dossier-meta" style="margin-right: var(--space-xs);">Verificación de tono:</span>
+            <span class="tag tag-positive">Científico</span>
+            <span class="tag tag-positive">Empático</span>
+            <span class="tag tag-positive">Sofisticado</span>
+            <span class="tag tag-positive">Sencillo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Do vs Never Do & Monthly Editorial Cadence -->
+      <div class="asymmetric-grid-reverse">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Cómo Hablamos (Tono Taranis Black)</th>
+                <th>Cómo NUNCA Hablamos (Prohibido)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>&ldquo;La ErgoPro fue proyectada con soporte lumbar 3D dinámico que mantiene la alineación de la columna durante 8 h diarias de trabajo, reduciendo la presión intradiscal.&rdquo;</td>
+                <td><em>&ldquo;Esa silla es muy suave, cómoda y va a dejar su rinconcito lindo y acogedor.&rdquo;</em></td>
+              </tr>
+              <tr>
+                <td>&ldquo;Invertir en ergonomía preventiva es una estrategia de ROI directo: disminuye el ausentismo médico y protege la organización contra notificaciones de NR-17.&rdquo;</td>
+                <td><em>&ldquo;¡Aproveche nuestra gran liquidación de sillas de oficina con descuento espectacular por tiempo limitado!&rdquo;</em></td>
+              </tr>
+              <tr>
+                <td>&ldquo;La alternancia entre posiciones en pie y sentadas con escritorios elevables eleva la energía cognitiva y el foco profundo de los equipos de tecnología.&rdquo;</td>
+                <td><em>&ldquo;Ponte de pie para quemar calorías mientras trabajas y nunca más te quedes dormido delante de la computadora.&rdquo;</em></td>
+              </tr>
+              <tr>
+                <td>&ldquo;Nuestras cabinas acústicas garantizan 32 dB de atenuación sonora certificada ISO, creando ambientes privados inmediatos para conversaciones estratégicas.&rdquo;</td>
+                <td><em>&ldquo;Compre una caja de madera con vidrio para esconderse del ruido de sus compañeros de trabajo.&rdquo;</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Semana</th>
+                <th>Canal y Formato (Equipo 4 Personas)</th>
+                <th>Foco Temático y Responsable HITL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="num-cell" style="text-align: left;">S1</td>
+                <td>LinkedIn (Carrusel PDF) + Blog</td>
+                <td>Diagnóstico LER/DORT y ROI de prevención · Redactor + Ergonomista</td>
+              </tr>
+              <tr>
+                <td class="num-cell" style="text-align: left;">S2</td>
+                <td>Instagram / TikTok (Reels loop)</td>
+                <td>Mecánica Synchro-Tilt ErgoPro y ajuste 4D · Social Media + Visual IA</td>
+              </tr>
+              <tr>
+                <td class="num-cell" style="text-align: left;">S3</td>
+                <td>E-mail Nutrición B2B (CRM)</td>
+                <td>Cobertura NR-17 y caso SmartDesk en TI (+15–22% foco) · Líder Mkt</td>
+              </tr>
+              <tr>
+                <td class="num-cell" style="text-align: left;">S4</td>
+                <td>LinkedIn + Instagram (Carrusel oscuro)</td>
+                <td>Acústica Silence 32 dB (UC Irvine 23m15s) · Equipo completo HITL</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 04: ERGONOMIC PORTFOLIO, NR-17 COMPLIANCE & COMMERCIAL POLICY -->
+    <section id="cap-04" class="section-block reveal-section">
+      <div class="section-header-grid">
+        <div class="dossier-bar">
+          <div class="dossier-bar-left">
+            <span class="dossier-pill">Catálogo Técnico 2026</span>
+            <span class="dossier-meta">Cumplimiento NR-17, ABERGO, ANSI/BIFMA e ISO 23351-1</span>
+          </div>
+          <span class="index-num">CAPÍTULO 04</span>
+        </div>
+        <h2 class="section-title">Tres líneas arquitectónicas con respaldo clínico NR-17 y reglas logísticas claras para cuentas B2B</h2>
+        <p class="prose">
+          Cada compra corporativa de Taranis Black incorpora un informe ergonómico de puesto de trabajo individualizado en PDF, firmado por un Ingeniero de Seguridad del Trabajo y un Ergonomista acreditado, otorgando defensa documental inmediata frente a inspecciones del Ministerio del Trabajo bajo la NR-17 (Portería MTPS 3.214).
+        </p>
+      </div>
+
+      <!-- Line Filter -->
+      <div class="pill-tabs" role="group" aria-label="Filtrar línea de productos">
+        <button type="button" class="btn btn-active" id="cat-btn-all" onclick="filterCatalog('all')">Todo el Portafolio (9)</button>
+        <button type="button" class="btn btn-secondary" id="cat-btn-ergopro" onclick="filterCatalog('ergopro')">ErgoPro · Sillas (3)</button>
+        <button type="button" class="btn btn-secondary" id="cat-btn-smartdesk" onclick="filterCatalog('smartdesk')">SmartDesk · Elevables (3)</button>
+        <button type="button" class="btn btn-secondary" id="cat-btn-silence" onclick="filterCatalog('silence')">Silence · Cabinas (3)</button>
+      </div>
+
+      <div class="card-grid" id="catalog-grid"></div>
+
+      <!-- Interactive Commercial Policy & Freight Calculator -->
+      <div class="figure-card">
+        <div class="dossier-bar">
+          <div class="dossier-bar-left">
+            <span class="index-num">VERIFICADOR DE POLÍTICA COMERCIAL, FLETES CIF/FOB Y NR-17</span>
+          </div>
+          <span class="dossier-meta">Reglas Vigentes 2026</span>
+        </div>
+
+        <div class="asymmetric-grid" style="align-items: end;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: var(--space-md);">
+            <div class="control-group">
+              <label class="control-label" for="pol-order-value">Valor del Pedido B2B (USD)</label>
+              <input type="number" id="pol-order-value" min="1000" max="1500000" step="500" value="42000" oninput="evaluateCommercialPolicy()">
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="pol-positions">Posiciones Ergonómicas</label>
+              <input type="number" id="pol-positions" min="1" max="500" step="1" value="35" oninput="evaluateCommercialPolicy()">
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="pol-region">Región de Entrega (Brasil)</label>
+              <select id="pol-region" onchange="evaluateCommercialPolicy()">
+                <option value="se_s">Sudeste / Sur (Capitales)</option>
+                <option value="other">Centro-Oeste / Nordeste / Norte</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="pol-includes-silence">¿Incluye Cabinas Silence?</label>
+              <select id="pol-includes-silence" onchange="evaluateCommercialPolicy()">
+                <option value="yes">Sí (Requiere montaje técnico)</option>
+                <option value="no">No (Solo sillas / escritorios)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="aside-box" id="policy-result-box" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 05: FINANCIAL SIMULATORS (ROI, LER/DORT ABSENTEEISM & OPERATIONAL VIABILITY) -->
+    <section id="cap-05" class="section-block reveal-section">
+      <div class="section-header-grid">
+        <div class="dossier-bar">
+          <div class="dossier-bar-left">
+            <span class="dossier-pill">Modelado Financiero</span>
+            <span class="dossier-meta">ROI, Ausentismo LER/DORT y Viabilidad Operativa IA</span>
+          </div>
+          <span class="index-num">CAPÍTULO 05</span>
+        </div>
+        <h2 class="section-title">Simuladores financieros para proyectar el punto de equilibrio por salud laboral y eficiencia operativa</h2>
+        <p class="prose">
+          Ajusta las variables operativas de tu empresa o utiliza los escenarios preconfigurados. El Simulador A proyecta el retorno financiero de equipar puestos bajo NR-17 frente al costo oculto de alejamientos LER/DORT (3 veces el salario mensual), la recuperación cognitiva Sit-Stand y las interrupciones acústicas. El Simulador B evalúa la viabilidad económica del ecosistema de IA para el equipo de marketing de cuatro personas.
+        </p>
+      </div>
+
+      <!-- SIMULATOR A: ERGONOMIC ROI & LER/DORT ABSENTEEISM -->
+      <div class="figure-card" style="display: flex; flex-direction: column; gap: var(--space-lg);">
+        <div class="dossier-bar" style="margin-bottom: 0;">
+          <div class="dossier-bar-left">
+            <span class="index-num">SIMULADOR A · ROI ERGONÓMICO Y REDUCCIÓN DE AUSENTISMO (LER/DORT)</span>
+          </div>
+          <div class="pill-tabs">
+            <button type="button" class="btn btn-secondary" onclick="applyRoiPreset('ti')">Célula TI (30 puestos)</button>
+            <button type="button" class="btn btn-secondary" onclick="applyRoiPreset('mid')">Corporativo Medio (60 puestos)</button>
+            <button type="button" class="btn btn-secondary" onclick="applyRoiPreset('taranis')">Escala Taranis (280 colab.)</button>
+          </div>
+        </div>
+
+        <div class="asymmetric-grid">
+          <!-- Controls -->
+          <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+            <div class="control-group">
+              <label class="control-label" for="num-seats">
+                <span>Puestos / Colaboradores Equipados</span>
+                <span class="index-num" id="lbl-seats-val">60</span>
+              </label>
+              <div class="control-row">
+                <input type="range" id="slider-seats" min="5" max="350" step="5" value="60" aria-label="Control deslizante de puestos equipados" oninput="syncSeatsFromSlider(this.value)">
+                <input type="number" id="num-seats" min="5" max="500" step="1" value="60" oninput="syncSeatsFromNumber(this.value)">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="num-salary">
+                <span>Salario Mensual Promedio (USD)</span>
+                <span class="index-num" id="lbl-salary-val">USD 2.400</span>
+              </label>
+              <div class="control-row">
+                <input type="range" id="slider-salary" min="800" max="8000" step="100" value="2400" aria-label="Control deslizante de salario mensual" oninput="syncSalaryFromSlider(this.value)">
+                <input type="number" id="num-salary" min="500" max="15000" step="50" value="2400" oninput="syncSalaryFromNumber(this.value)">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="num-abs-rate">
+                <span>Incidencia Anual LER/DORT o Rotación Vinculada (%)</span>
+                <span class="index-num" id="lbl-abs-val">12,0%</span>
+              </label>
+              <div class="control-row">
+                <input type="range" id="slider-abs-rate" min="2" max="30" step="0.5" value="12" aria-label="Control deslizante de tasa de ausentismo" oninput="syncAbsFromSlider(this.value)">
+                <input type="number" id="num-abs-rate" min="1" max="50" step="0.5" value="12" oninput="syncAbsFromNumber(this.value)">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="num-reduction">
+                <span>Reducción Esperada de Alejamientos por Ergonomía (%)</span>
+                <span class="index-num" id="lbl-red-val">55%</span>
+              </label>
+              <div class="control-row">
+                <input type="range" id="slider-reduction" min="15" max="80" step="5" value="55" aria-label="Control deslizante de reducción de ausentismo" oninput="syncRedFromSlider(this.value)">
+                <input type="number" id="num-reduction" min="10" max="90" step="1" value="55" oninput="syncRedFromNumber(this.value)">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-sm);">
+              <div class="control-group">
+                <label class="control-label" for="roi-chair-tier">Línea Silla ErgoPro</label>
+                <select id="roi-chair-tier" onchange="recalcRoiSimulator()">
+                  <option value="1890">ErgoPro Core (USD 1.890)</option>
+                  <option value="2490" selected>ErgoPro Specialist (USD 2.490)</option>
+                  <option value="3490">ErgoPro Executive (USD 3.490)</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="roi-desk-tier">Línea SmartDesk</label>
+                <select id="roi-desk-tier" onchange="recalcRoiSimulator()">
+                  <option value="0">Solo sillas (USD 0)</option>
+                  <option value="2700">SmartDesk Compact (USD 2.700)</option>
+                  <option value="3600" selected>SmartDesk Studio (USD 3.600)</option>
+                  <option value="4800">SmartDesk Pro Dual (USD 4.800)</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-sm);">
+              <div class="control-group">
+                <label class="control-label" for="roi-silence-count">Cabinas Silence Duo (USD 21k)</label>
+                <input type="number" id="roi-silence-count" min="0" max="30" step="1" value="2" oninput="recalcRoiSimulator()">
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="roi-nr17-risk">Pasivo / Multa NR-17 Evitada (USD)</label>
+                <input type="number" id="roi-nr17-risk" min="0" max="500000" step="2500" value="35000" oninput="recalcRoiSimulator()">
+              </div>
+            </div>
+          </div>
+
+          <!-- Outputs & Chart -->
+          <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+            <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(min(175px, 100%), 1fr));">
+              <div class="aside-box">
+                <div class="dossier-meta">Inversión CapEx Total</div>
+                <div class="subhead-title" id="out-capex" style="margin-top: var(--space-xs); font-variant-numeric: tabular-nums;">USD 0</div>
+                <div class="muted-note" id="out-capex-note">Incluye flete e informe NR-17</div>
+              </div>
+              <div class="aside-box">
+                <div class="dossier-meta">Ahorro Anual LER/DORT + Foco</div>
+                <div class="subhead-title" id="out-annual-benefit" style="margin-top: var(--space-xs); color: var(--positive); font-variant-numeric: tabular-nums;">USD 0</div>
+                <div class="muted-note" id="out-benefit-breakdown">Factor 3x salario + Sit-Stand</div>
+              </div>
+              <div class="aside-box">
+                <div class="dossier-meta">Payback Estimado</div>
+                <div class="subhead-title" id="out-payback" style="margin-top: var(--space-xs); font-variant-numeric: tabular-nums;">0 meses</div>
+                <div class="muted-note" id="out-roi-36m">ROI 36 meses: 0%</div>
+              </div>
+            </div>
+
+            <div class="chart-box">
+              <canvas id="roiChart" aria-label="Gráfico de flujo de caja acumulado y punto de equilibrio a 36 meses"></canvas>
+            </div>
+
+            <div id="roi-commercial-tag" class="status-banner positive" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIMULATOR B: OPERATIONAL VIABILITY OF MARKETING AI ECOSYSTEM -->
+      <div class="figure-card" style="display: flex; flex-direction: column; gap: var(--space-lg);">
+        <div class="dossier-bar" style="margin-bottom: 0;">
+          <div class="dossier-bar-left">
+            <span class="index-num">SIMULADOR B · VIABILIDAD OPERATIVA DEL ECOSISTEMA IA (EQUIPO DE 4 PERSONAS)</span>
+          </div>
+          <span class="dossier-meta">Ruta 0 + Ruta 2</span>
+        </div>
+
+        <div class="asymmetric-grid-reverse">
+          <!-- Chart + KPIs -->
+          <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+            <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(min(175px, 100%), 1fr));">
+              <div class="aside-box">
+                <div class="dossier-meta">Horas Liberadas / Mes</div>
+                <div class="subhead-title" id="out-ops-hours" style="margin-top: var(--space-xs); font-variant-numeric: tabular-nums;">0 h</div>
+                <div class="muted-note">Para estrategia B2B de cuentas</div>
+              </div>
+              <div class="aside-box">
+                <div class="dossier-meta">SLA Respuesta en Redes</div>
+                <div class="subhead-title" id="out-ops-sla" style="margin-top: var(--space-xs); color: var(--positive); font-variant-numeric: tabular-nums;">&lt; 2 h</div>
+                <div class="muted-note">Antes: &gt; 24 horas</div>
+              </div>
+              <div class="aside-box">
+                <div class="dossier-meta">Beneficio Neto Anual IA</div>
+                <div class="subhead-title" id="out-ops-net" style="margin-top: var(--space-xs); font-variant-numeric: tabular-nums;">USD 0</div>
+                <div class="muted-note" id="out-ops-roi">ROI Proyecto IA: 0%</div>
+              </div>
+            </div>
+
+            <div class="chart-box">
+              <canvas id="opsChart" aria-label="Comparativa de horas semanales antes y después de la implementación de IA con HITL"></canvas>
+            </div>
+          </div>
+
+          <!-- Inputs -->
+          <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+            <div class="control-group">
+              <label class="control-label" for="num-mkt-rate">
+                <span>Costo Hora Promedio Equipo (USD/h)</span>
+                <span class="index-num" id="lbl-mkt-rate">USD 28</span>
+              </label>
+              <div class="control-row">
+                <input type="range" id="slider-mkt-rate" min="15" max="80" step="1" value="28" aria-label="Costo hora equipo marketing" oninput="syncMktRateFromSlider(this.value)">
+                <input type="number" id="num-mkt-rate" min="10" max="150" step="1" value="28" oninput="syncMktRateFromNumber(this.value)">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="num-freelance">
+                <span>Gasto Mensual Actual en Freelancers Visuales (USD)</span>
+                <span class="index-num" id="lbl-freelance">USD 2.200</span>
+              </label>
+              <div class="control-row">
+                <input type="range" id="slider-freelance" min="0" max="8000" step="100" value="2200" aria-label="Gasto mensual en freelancers" oninput="syncFreelanceFromSlider(this.value)">
+                <input type="number" id="num-freelance" min="0" max="15000" step="100" value="2200" oninput="syncFreelanceFromNumber(this.value)">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="num-ai-cost">
+                <span>Licencias Empresariales IA + Auditoría LGPD (USD/mes)</span>
+                <span class="index-num" id="lbl-ai-cost">USD 480</span>
+              </label>
+              <div class="control-row">
+                <input type="range" id="slider-ai-cost" min="100" max="2500" step="20" value="480" aria-label="Costo mensual licencias IA" oninput="syncAiCostFromSlider(this.value)">
+                <input type="number" id="num-ai-cost" min="50" max="5000" step="20" value="480" oninput="syncAiCostFromNumber(this.value)">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="num-hitl-pct">
+                <span>Tiempo Reservado a Supervisión Humana HITL (%)</span>
+                <span class="index-num" id="lbl-hitl-pct">25%</span>
+              </label>
+              <div class="control-row">
+                <input type="range" id="slider-hitl-pct" min="10" max="50" step="5" value="25" aria-label="Porcentaje de tiempo en supervisión humana" oninput="syncHitlFromSlider(this.value)">
+                <input type="number" id="num-hitl-pct" min="5" max="60" step="5" value="25" oninput="syncHitlFromNumber(this.value)">
+              </div>
+            </div>
+
+            <div class="aside-box">
+              <div class="dossier-meta">Supuesto Operativo de Capacidad (4 Personas = 160 h/sem)</div>
+              <p class="muted-note" style="margin-top: var(--space-xs);">
+                Línea base semanal: 52 h en adaptación multicanal, 36 h en gestión/espera de diseño y 28 h en triaje de redes. La IA generativa reduce la producción bruta en 65% tras descontar el margen de revisión humana (HITL) y reduce en 75% el gasto externo en diseño recurrente.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPORT & RESET BAR -->
+      <div class="figure-card" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-md);">
+        <div>
+          <strong style="display: block;">Exportación del Resumen Ejecutivo y Persistencia Local</strong>
+          <span class="muted-note" id="persistence-status">Tus parámetros, simulación y verificación LGPD se guardan automáticamente en la sesión.</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center;">
+          <button type="button" class="btn btn-primary" onclick="exportExecutiveSummary()">Descargar Informe Ejecutivo (.txt)</button>
+          <button type="button" class="btn btn-danger-outline" id="reset-all-btn" onclick="handleResetClick(this)">Restablecer parámetros</button>
+        </div>
+      </div>
+    </section>
+
+    <footer style="border-top: var(--section-rule); padding-top: var(--space-md); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-sm);">
+      <span class="dossier-meta">Fuentes: Catálogo Técnico Taranis Black 2026 · Manual Ruta 2 · Matriz AI Canvas Ruta 0 · NR-17 (MTPS 3.214) · LGPD</span>
+      <span class="dossier-meta">Documento interactivo para toma de decisiones ejecutivas</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    /* --- DATA MODELS (Backtick literals only to prevent escaping issues) --- */
+    const USE_CASES = [
+      {
+        id: 0,
+        code: `01`,
+        title: `Asistente Multicanal de Identidad Verbal y Respuesta (Gem / GPT)`,
+        type: `IA Generativa`,
+        quadrant: `Victorias Rápidas (Alto Impacto · Bajo Esfuerzo)`,
+        problem: `El equipo de 4 personas publica simultáneamente en LinkedIn, Instagram, TikTok y blog, perdiendo consistencia de tono y tardando más de 24 horas en responder mensajes.`,
+        solution: `Prompt maestro alimentado con el Artículo-Semente y los 4 pilares verbales para generar borradores multicanal y respuestas consultivas iniciales en menos de 2 horas.`,
+        hitl: `Supervisión Humana Obligatoria: Un miembro del equipo aprueba cada cifra biomecánica, valida la ausencia de promesas médicas y firma las respuestas a leads corporativos.`,
+        metrics: `Ahorro estimado: 34 h/semana · SLA de respuesta: de >24 h a <2 h · Adopción meta: 100% del equipo.`
+      },
+      {
+        id: 1,
+        code: `02`,
+        title: `Dirección Visual Interna y Maquetas Arquitectónicas con IA`,
+        type: `IA Generativa`,
+        quadrant: `Apoyo Táctico (Impacto Medio · Bajo Esfuerzo)`,
+        problem: `La dependencia de diseñadores freelance externos retrasa los lanzamientos semanales y eleva el costo por pieza gráfica.`,
+        solution: `Biblioteca de prompts estandarizados de dirección visual minimalista (fondos oscuros sobrios, iluminación arquitectónica, tipografía limpia) para carruseles y portadas.`,
+        hitl: `Supervisión Humana Obligatoria: Control estricto de fidelidad física del mobiliario (brazos 4D, mesh alemán, proporciones de cabinas Silence) antes de publicar.`,
+        metrics: `Reducción de hasta 75% en gasto freelance · Ciclo visual de 5 días a 4 horas.`
+      },
+      {
+        id: 2,
+        code: `03`,
+        title: `Scoring Predictivo de Leads B2B y Alerta Temprana de Turnover`,
+        type: `IA Predictiva`,
+        quadrant: `Proyectos Estratégicos (Alto Impacto · Mayor Esfuerzo)`,
+        problem: `Priorización manual de 20 cuentas B2B (Fintechs, Industrias, Logística, Salud) y rotación interna del 22,5% sin alertas preventivas de riesgo osteomuscular.`,
+        solution: `Modelo predictivo sobre datos anonimizados para puntuar propensión de compra según dolores NR-17 y detectar áreas con mayor riesgo de ausentismo LER/DORT.`,
+        hitl: `Supervisión Humana Obligatoria: Ninguna decisión laboral o comercial se ejecuta de forma automática; el comité de RR. HH. y ventas valida cada intervención.`,
+        metrics: `Incremento esperado de conversión B2B (+18%) · Detección temprana en áreas críticas.`
+      },
+      {
+        id: 3,
+        code: `04`,
+        title: `Validador Determinista de Reglas NR-17, Fletes CIF/FOB y Cotización`,
+        type: `IA Tradicional / Automatización`,
+        quadrant: `Victorias Rápidas (Alto Impacto · Bajo Esfuerzo)`,
+        problem: `Errores operativos al calcular umbrales de flete CIF (> USD 35.000), personalización (> 30 posiciones) y plazos de entrega regionales.`,
+        solution: `Motor de reglas exactas integrado al flujo comercial para cotizar en tiempo real, adjuntar fichas técnicas NR-17 y verificar condiciones de pago 30/60/90 días.`,
+        hitl: `Supervisión Humana Obligatoria: El Informe Ergonómico en PDF solo adquiere validez legal tras la firma del Ingeniero de Seguridad del Trabajo y Ergonomista acreditado.`,
+        metrics: `Cero errores en cotización de fletes · Reducción del ciclo de propuesta B2B en 40%.`
+      }
+    ];
+
+    const PRODUCTS = [
+      {
+        line: `ergopro`,
+        lineLabel: `ErgoPro · Sillas Corporativas`,
+        name: `Taranis ErgoPro Executive`,
+        price: 3490,
+        profile: `C-Level, Directores y puestos estratégicos`,
+        specs: `Mesh Termoplástico Alemán respirable; apoyo lumbar 3D dinámico; brazos 4D; mecanismo Synchro-Tilt italiano con 5 bloqueos; pistón Clase 4 cromado (hasta 150 kg); base aluminio pulido con rodizios PU 65 mm.`,
+        cert: `NR-17 Integral (ABERGO) + ANSI/BIFMA X5.1`,
+        warranty: `5 años estructural y mecánica`
+      },
+      {
+        line: `ergopro`,
+        lineLabel: `ErgoPro · Sillas Corporativas`,
+        name: `Taranis ErgoPro Specialist`,
+        price: 2490,
+        profile: `Equipos de TI, analistas, finanzas y operaciones`,
+        specs: `Respaldo en mesh de alta densidad; espuma inyectada D60 con control térmico; soporte lumbar vertical 6 niveles; brazos 3D; reclinación sincronizada 3 bloqueos; pistón Clase 4 (hasta 135 kg).`,
+        cert: `Informe NR-17 por ergonomista certificado`,
+        warranty: `5 años estructural / 2 años tejido y rodizios`
+      },
+      {
+        line: `ergopro`,
+        lineLabel: `ErgoPro · Sillas Corporativas`,
+        name: `Taranis ErgoPro Core`,
+        price: 1890,
+        profile: `Atención, backoffice y volumen B2B`,
+        specs: `Curvatura fisiológica premoldeada; asiento espuma D50; brazos 2D; bloqueo en posición erguida (90°) con ajuste de presión manual; rodizios 50 mm para suelo duro.`,
+        cert: `Conformidad requisitos mínimos NR-17`,
+        warranty: `3 años garantía integral`
+      },
+      {
+        line: `smartdesk`,
+        lineLabel: `SmartDesk · Escritorios Elevables`,
+        name: `Taranis SmartDesk Pro Dual 160`,
+        price: 4800,
+        profile: `Estaciones dual-monitor y liderazgo`,
+        specs: `Motor doble alemán ultrasilencioso (<43 dB); velocidad 38 mm/s; panel táctil LED con 4 memorias; sensor giroscópico anticolisión; tablero 160 × 80 cm MDF 25 mm FSC; soporta 125 kg; canaleta oculta.`,
+        cert: `Alternancia Sit-Stand + Certificación FSC`,
+        warranty: `5 años estructura acero / 3 años motores y electrónica`
+      },
+      {
+        line: `smartdesk`,
+        lineLabel: `SmartDesk · Escritorios Elevables`,
+        name: `Taranis SmartDesk Studio 140`,
+        price: 3600,
+        profile: `Analistas, ingeniería y espacios híbridos`,
+        specs: `Motor doble silencioso (<46 dB); velocidad 32 mm/s; 4 posiciones memorizables; tablero ergonómico 140 × 70 cm; capacidad 100 kg; sensor anti-impacto estándar; pasacables embutidos.`,
+        cert: `Ergonomía postural Sit-Stand NR-17`,
+        warranty: `5 años estructura / 2 años electrónica`
+      },
+      {
+        line: `smartdesk`,
+        lineLabel: `SmartDesk · Escritorios Elevables`,
+        name: `Taranis SmartDesk Compact 120`,
+        price: 2700,
+        profile: `Home office corporativo y oficinas densas`,
+        specs: `Motor único de alto par; panel 3 memorias; tablero compacto 120 × 60 cm; soporta hasta 75 kg; montaje rápido en 20 minutos.`,
+        cert: `Adecuado a teletrabajo híbrido NR-17`,
+        warranty: `3 años estructura / 2 años electrónica`
+      },
+      {
+        line: `silence`,
+        lineLabel: `Silence · Cabinas Acústicas`,
+        name: `Taranis Silence Quad (4 Lugares)`,
+        price: 28000,
+        profile: `Reuniones híbridas y presentaciones ejecutivas`,
+        specs: `Atenuación certificada de 32 dB (ISO 23351-1); vidrio doble laminado 10 mm; sensor CO₂ con 4 coolers que renuevan 100% del aire cada 90 s; LED 4000K dimerable; tomas ABNT + USB-C PD 65W + HDMI; 2100 × 1500 × 2250 mm (580 kg).`,
+        cert: `Norma acústica ISO 23351-1 (32 dB)`,
+        warranty: `Montaje técnico especializado (4 horas)`
+      },
+      {
+        line: `silence`,
+        lineLabel: `Silence · Cabinas Acústicas`,
+        name: `Taranis Silence Duo (2 Lugares)`,
+        price: 21000,
+        profile: `Feedback 1-on-1, entrevistas RR. HH. y alineación`,
+        specs: `Atenuación 32 dB; ventilación forzada continua <28 dB; LED automático por presencia; dos banquetas acolchadas y mesa central; tomas eléctricas y USB-C; 1400 × 1100 × 2250 mm (390 kg).`,
+        cert: `Privacidad acústica corporativa 32 dB`,
+        warranty: `Montaje técnico especializado (4 horas)`
+      },
+      {
+        line: `silence`,
+        lineLabel: `Silence · Cabinas Acústicas`,
+        name: `Taranis Silence Solo (Phone Booth)`,
+        price: 14500,
+        profile: `Llamadas confidenciales y foco profundo`,
+        specs: `Cabina individual compacta; atenuación 30 dB; sensor de presencia para luz y extracción de aire; encimera madera maciza con cargador por inducción embutido; 1000 × 1000 × 2200 mm (260 kg).`,
+        cert: `Aislamiento acústico 30 dB`,
+        warranty: `Montaje técnico especializado (4 horas)`
+      }
+    ];
+
+    const STUDIO_TEMPLATES = {
+      ler: {
+        visual: `Fondo negro editorial mate, primer plano de un puesto corporativo vacío iluminado con luz lateral fría 4000K y tipografía limpia destacando el dato "3x salario mensual" sin personas ni poses dramáticas.`,
+        linkedin: {
+          exec: `El costo de un colaborador clave alejado por LER o DORT no aparece completo en la nómina.\n\nSegún el Ministerio de Seguridad Social, estas lesiones ocupan el segundo lugar en auxilios por enfermedad en Brasil. Cuando un profesional se ausenta, la pérdida de continuidad en proyectos y el retrabajo generan un costo invisible de hasta 3 veces su remuneración mensual.\n\nTratar el mobiliario como una compra comoditizada de almacén traslada el gasto hacia RR. HH. y pasivos laborales. En Taranis Black diseñamos infraestructura ergonómica con informes técnicos NR-17 y 5 años de garantía para proteger la continuidad de su operación.`,
+          clinical: `Las Lesiones por Esfuerzo Repetitivo (LER) y los Disturbios Osteomusculares (DORT) son la segunda causa de alejamiento previsional en el trabajo híbrido.\n\nUn puesto sin soporte lumbar dinámico ni ajuste postural acumula microtraumas diarios antes de generar el primer certificado médico. La prevención clínica requiere equipamiento certificado bajo NR-17 (ABERGO) acompañado de informe técnico firmado por ergonomista acreditado.`,
+          arch: `El retorno a oficinas híbridas exige más que estética arquitectónica: exige salud osteomuscular medible.\n\nIntegrar sillería de ingeniería alemana e italiana con estaciones elevables y cabinas acústicas transforma la planta corporativa en un activo de retención de talento y continuidad operativa.`
+        },
+        instagram: {
+          exec: `Slide 1: ¿Cuánto cuesta realmente una baja por dolor lumbar?\nSlide 2: Hasta 3x el salario mensual del colaborador en retrabajo y continuidad perdida.\nSlide 3: LER/DORT es la 2.ª causa de ausentismo médico en el país.\nSlide 4: Solución Taranis Black: puestos certificados NR-17 con garantía de 5 años.\nCaption: La ergonomía dejó de ser estética. Es protección financiera del talento.`,
+          clinical: `Slide 1: Tu columna soporta cada hora de jornada híbrida.\nSlide 2: LER y DORT ya son la 2.ª mayor causa de ausencias laborales.\nSlide 3: Un ajuste lumbar 3D y pistón Clase 4 previenen la sobrecarga antes del dolor.\nCaption: Ciencia biomecánica aplicada al bienestar diario.`,
+          arch: `Slide 1: Arquitectura corporativa que cuida a quien la habita.\nSlide 2: El diseño minimalista sin ergonomía certificada eleva la rotación.\nSlide 3: Líneas ErgoPro y SmartDesk: ingeniería alemana bajo norma NR-17.`
+        },
+        email: {
+          exec: `Asunto: El costo oculto del ausentismo en su operación | Informe Taranis Black\n\nEstimado(a) Director(a):\n\nEn operaciones híbridas de alta exigencia, un solo alejamiento por LER o DORT representa un impacto oculto de hasta 3 veces el salario mensual en retrabajo y pérdida de continuidad.\n\nNuestro equipo de ingeniería preparó un diagnóstico rápido para proyectar cómo la renovación gradual con sillería ErgoPro e informes NR-17 acreditados reduce certificados médicos y blinda su empresa ante inspecciones.\n\n¿Agendamos 15 minutos con nuestro ergonomista jefe?`,
+          clinical: `Asunto: Cómo reducir bajas osteomusculares en equipos de jornada intensiva\n\nHola,\n\nLas lesiones LER/DORT lideran los motivos evitables de ausencia prolongada. Compartimos nuestra guía técnica para evaluar puestos bajo la norma NR-17 y entregar respaldo documental inmediato a su área de Seguridad del Trabajo.`,
+          arch: `Asunto: Especificación ergonómica NR-17 para su próximo hub corporativo\n\nHola,\n\nPonemos a disposición de su estudio las fichas técnicas y certificaciones ABERGO y ANSI/BIFMA de nuestras líneas ErgoPro, SmartDesk y Silence para integrar salud preventiva y diseño minimalista.`
+        }
+      },
+      ergopro: {
+        visual: `Macro fotográfico en estudio oscuro sobre el mecanismo Synchro-Tilt italiano y el mesh termoplástico alemán de la ErgoPro Executive, resaltando las vértebras L4–L5 en diagrama técnico minimalista.`,
+        linkedin: {
+          exec: `La falacia del "confort pasivo" cuesta productividad cada tarde.\n\nLa medicina ocupacional demuestra que, tras tres horas continuas en una silla con ajustes limitados, la circulación sanguínea pélvica y lumbar cae hasta un 40%.\n\nLa línea Taranis ErgoPro actúa como un exoesqueleto funcional: su mecanismo Synchro-Tilt acompaña las micro-oscilaciones de la columna y alivia la compresión sobre L4–L5 y S1 durante jornadas de 8 a 12 horas.`,
+          clinical: `Estar "blando" no es ser ergonómico. La fatiga estática reduce en 40% el flujo sanguíneo pélvico y lumbar a partir de la tercera hora sentado.\n\nCon soporte lumbar 3D dinámico, brazos 4D y certificación ABERGO / ANSI-BIFMA X5.1, ErgoPro Executive mantiene la curvatura fisiológica sin compresión discal.`,
+          arch: `Aluminio pulido fundido, mesh termoplástico alemán y rodizios silenciosos de 65 mm.\n\nErgoPro combina sobriedad arquitectónica con ingeniería biomecánica certificada para puestos directivos y células técnicas.`
+        },
+        instagram: {
+          exec: `Slide 1: Por qué una silla "blanda" destruye tu foco a las 15:00.\nSlide 2: A partir de la 3.ª hora, la circulación lumbar cae hasta 40%.\nSlide 3: ErgoPro Executive: Synchro-Tilt italiano + apoyo lumbar 3D.\nSlide 4: 5 años de garantía estructural y mecánica.`,
+          clinical: `Slide 1: Fatiga estática vs. Ergonomía Activa.\nSlide 2: Alivio comprobado sobre vértebras L4–L5 y S1.\nSlide 3: Brazos 4D y pistón Clase 4 para jornadas de 8 a 12 horas.`,
+          arch: `Slide 1: Ingeniería alemana e italiana en tu estación de trabajo.\nSlide 2: Personalización de mesh sin costo desde 30 posiciones.\nSlide 3: Diseño minimalista certificado bajo NR-17.`
+        },
+        email: {
+          exec: `Asunto: ¿Por qué cae el rendimiento de sus analistas después de la tercera hora?\n\nEstimado(a) líder:\n\nLa fatiga estática reduce hasta un 40% la circulación lumbar tras tres horas en sillas convencionales. La línea ErgoPro Specialist (espuma D60, soporte lumbar de 6 niveles, NR-17 certificado) protege la energía sostenida de sus equipos de TI y finanzas.`,
+          clinical: `Asunto: Protocolo biomecánico L4–L5 para puestos de 8 a 12 horas\n\nHola,\n\nCompartimos la ficha técnica comparativa de nuestras sillas ErgoPro Executive, Specialist y Core con certificaciones ABERGO y ANSI/BIFMA X5.1.`,
+          arch: `Asunto: Personalización de acabados ErgoPro para proyectos superiores a 30 puestos\n\nHola,\n\nPara renovaciones corporativas sobre 30 posiciones, ofrecemos personalización de mesh sin costo adicional y entrega en 5 a 8 días hábiles en Sur y Sudeste.`
+        }
+      },
+      smartdesk: {
+        visual: `Video en loop o secuencia de 3 cuadros oscuros mostrando el ascenso silencioso (<43 dB) de la SmartDesk Pro Dual 160 y el panel táctil LED con 4 memorias de altura.`,
+        linkedin: {
+          exec: `Estudios de la Universidad de Pittsburgh y el British Journal of Sports Medicine comprueban que alternar postura sentada y de pie eleva la energía cognitiva entre un 15% y un 22%.\n\nCon SmartDesk Pro Dual 160 (motor doble alemán <43 dB y 4 memorias LED), un equipo cambia de postura en menos de 10 segundos sin interrumpir su flujo de trabajo.`,
+          clinical: `La alternancia Sit-Stand previene el acortamiento de la musculatura isquiotibial y los dolores cervicales crónicos en programadores, analistas y traders con múltiples monitores.\n\nSmartDesk incluye sensor giroscópico anticolisión y tablero ergonómico con borde biselado.`,
+          arch: `Tablero MDF certificado FSC con canaleta oculta para gestión limpia de cables y elevación a 38 mm/s.\n\nSmartDesk Pro Dual 160 ordena el espacio visual mientras promueve el movimiento constante.`
+        },
+        instagram: {
+          exec: `Slide 1: +15% a 22% de energía cognitiva con un toque de botón.\nSlide 2: Evidencia de la Univ. de Pittsburgh sobre alternancia Sit-Stand.\nSlide 3: SmartDesk Pro Dual 160: <43 dB y 4 memorias digitales.`,
+          clinical: `Slide 1: 10 segundos para proteger tu columna cervical.\nSlide 2: Evita el acortamiento isquiotibial durante sprints de código.\nSlide 3: Capacidad de 125 kg con sensor giroscópico anticolisión.`,
+          arch: `Slide 1: Estación limpia, cables ocultos, altura inteligente.\nSlide 2: Modelos Pro Dual 160, Studio 140 y Compact 120 (montaje 20 min).`
+        },
+        email: {
+          exec: `Asunto: Cómo elevar entre 15% y 22% la energía cognitiva en su equipo de TI\n\nEstimado(a) Director(a):\n\nLa somnolencia post-almuerzo tiene solución biomecánica. La alternancia Sit-Stand con escritorios SmartDesk (<43 dB, 4 memorias) mantiene la oxigenación cerebral en equipos que operan múltiples monitores.`,
+          clinical: `Asunto: Prevención cervical para desarrolladores y analistas financieros\n\nHola,\n\nPresentamos las tres configuraciones de SmartDesk con hasta 5 años de garantía estructural y certificación sostenible FSC.`,
+          arch: `Asunto: Estaciones elevables SmartDesk para oficinas densas y home office\n\nHola,\n\nDesde SmartDesk Compact 120 (montaje en 20 min) hasta Pro Dual 160, adaptamos la estación a la huella de su oficina.`
+        }
+      },
+      silence: {
+        visual: `Plano arquitectónico nocturno de la cabina Taranis Silence Quad con iluminación neutra 4000K interior, destacando el aislamiento de 32 dB y la renovación de aire cada 90 segundos.`,
+        linkedin: {
+          exec: `Cada interrupción acústica en una oficina abierta le cuesta a su empresa 23 minutos y 15 segundos de concentración perdida.\n\nAsí lo documenta la Universidad de California (Irvine). Las cabinas Taranis Silence ofrecen 32 dB de atenuación certificada ISO 23351-1 y renovación total de aire cada 90 segundos, creando salas de privacidad inmediata sin obras civiles.`,
+          clinical: `La contaminación sonora es un estresor invisible que fragmenta el estado de Flow y eleva la fatiga mental en reuniones híbridas.\n\nCon ventilación silenciosa (<28 dB) controlada por sensor de CO₂ e iluminación LED 4000K sin reflejos, Silence protege el confort cognitivo.`,
+          arch: `Vidrio acústico doble laminado de 10 mm, roble sostenible y conectividad USB-C PD 65W + HDMI.\n\nSilence Quad, Duo y Solo se instalan en 4 horas por nuestro equipo técnico sin demoler muros ni detener la operación.`
+        },
+        instagram: {
+          exec: `Slide 1: 23 minutos y 15 segundos.\nSlide 2: Eso tarda un profesional en recuperar el foco tras una interrupción en open space (UC Irvine).\nSlide 3: Taranis Silence: 32 dB certificados ISO y montaje en 4 horas.`,
+          clinical: `Slide 1: Privacidad acústica con aire renovado cada 90 segundos.\nSlide 2: Sensor de CO₂ y ventilación por debajo de 28 dB.\nSlide 3: Diseñada para 1-on-1, entrevistas y llamadas de foco profundo.`,
+          arch: `Slide 1: Salas de reunión modulares sin obra civil.\nSlide 2: Solo (1 plaza), Duo (2 plazas) y Quad (4 plazas).\nSlide 3: Vidrio doble 10 mm y conectividad Power Delivery 65W.`
+        },
+        email: {
+          exec: `Asunto: El costo de perder 23 minutos de foco tras cada llamada en open space\n\nEstimado(a) líder de Facilities:\n\nLas obras acústicas tradicionales detienen la oficina durante semanas. Nuestras cabinas modulares Taranis Silence (32 dB ISO 23351-1) se instalan en 4 horas y resuelven al instante las llamadas confidenciales y reuniones híbridas.`,
+          clinical: `Asunto: Cómo eliminar la fatiga acústica en entrevistas de RR. HH. y 1-on-1\n\nHola,\n\nSilence Duo ofrece ventilación activa con sensor de CO₂ y 32 dB de aislamiento para conversaciones sensibles de People & Culture.`,
+          arch: `Asunto: Especificaciones de carga y dimensiones de la línea Taranis Silence\n\nHola,\n\nCompartimos fichas técnicas (260 kg a 580 kg), requerimientos eléctricos ABNT 110/220V y tiempos de montaje para su proyecto.`
+        }
+      },
+      nr17: {
+        visual: `Composición sobria sobre fondo piedra con sello técnico "NR-17 · Informe PDF Acreditado" junto a una estación completa ErgoPro + SmartDesk.`,
+        linkedin: {
+          exec: `Invertir en ergonomía dejó de ser un beneficio estético para convertirse en gobernanza de riesgo corporativo.\n\nToda compra B2B en Taranis Black incluye un Informe Ergonómico de Puesto de Trabajo en PDF, firmado por Ingeniero de Seguridad del Trabajo y Ergonomista acreditado, listo para auditorías del Ministerio del Trabajo e inspecciones NR-17.`,
+          clinical: `La Norma Regulamentadora N.º 17 exige adaptación comprobada de cada puesto de trabajo.\n\nCon garantías estructurales de hasta 5 años, certificación ABERGO y facturación corporativa 30/60/90 días, el área de Personas convierte el cumplimiento legal en bienestar medible.`,
+          arch: `Pedidos corporativos sobre USD 35.000 cuentan con flete CIF sin costo para capitales del Sur y Sudeste, y plazos de 5 a 8 días hábiles en stock.`
+        },
+        instagram: {
+          exec: `Slide 1: ¿Su oficina está preparada para una inspección NR-17?\nSlide 2: Multas y pasivos laborales se evitan con respaldo técnico acreditado.\nSlide 3: Cada pedido B2B Taranis Black incluye Informe Ergonómico PDF firmado.`,
+          clinical: `Slide 1: Conformidad NR-17 real, no solo en el papel.\nSlide 2: Informes firmados por Ingeniero de Seguridad y Ergonomista.\nSlide 3: Garantía de hasta 5 años y soporte técnico local.`,
+          arch: `Slide 1: Logística B2B pensada para escala corporativa.\nSlide 2: Flete CIF gratuito desde USD 35.000 en capitales Sur/Sudeste.\nSlide 3: Facturación corporativa 30/60/90 días.`
+        },
+        email: {
+          exec: `Asunto: Blindaje documental NR-17 y condiciones comerciales 30/60/90 días\n\nEstimado(a) Director(a):\n\nAl renovar puestos con Taranis Black, su organización recibe automáticamente el Informe Ergonómico individualizado en PDF firmado por especialistas acreditados, además de flete CIF gratuito en pedidos superiores a USD 35.000 para capitales del Sur y Sudeste.`,
+          clinical: `Asunto: Documentación oficial para auditorías del Ministerio del Trabajo (NR-17)\n\nHola,\n\nPonemos a su alcance nuestro paquete de cumplimiento NR-17 con certificación ABERGO y ANSI/BIFMA X5.1.`,
+          arch: `Asunto: Plazos de entrega y personalización para proyectos corporativos 2026\n\nHola,\n\nConsulte nuestra tabla de plazos regionales (5–8 días útiles en Sur/Sudeste) y condiciones de personalización sin costo sobre 30 posiciones.`
+        }
+      }
+    };
+
+    const GEM_MASTER_PROMPT = `ROL: Eres el Estratega de Contenido Oficial de Taranis Black (mobiliario corporativo ergonómico B2B certificado bajo NR-17).
+PILARES DE VOZ INNEGOCIABLES:
+1. Científico y fundamentado: Cita biomecánica (L4–L5, S1), normas (NR-17, ABERGO, ANSI/BIFMA X5.1, ISO 23351-1) y datos clínicos reales. Nunca uses adjetivos vacíos.
+2. Empático y humano: Reconoce el cansancio físico, la fatiga estática (-40% circulación tras 3h) y el desgaste mental del open space.
+3. Sofisticado y premium: Vocabulario ejecutivo sobrio dirigido a C-Level, RR. HH., Facilities y arquitectos.
+4. Sencillo y accesible: Explica mecanismos complejos (Synchro-Tilt, 4D, Sit-Stand) con claridad práctica.
+PROHIBICIONES ESTRICTAS: Nunca menciones liquidaciones, descuentos agresivos, "quemar calorías", ni datos personales identificables (cumplimiento estricto LGPD).
+TAREA: Transforma el fragmento técnico del Artículo-Semente que te entregaré en piezas adaptadas para LinkedIn, Instagram y E-mail consultivo.`;
+
+    /* --- APPLICATION STATE --- */
+    let appState = {
+      selectedUseCase: 0,
+      lgpdChecks: [false, false, false, false, false],
+      studioChannel: `linkedin`,
+      studioTopic: `ler`,
+      studioAngle: `exec`,
+      catalogFilter: `all`,
+      roi: {
+        seats: 60,
+        salary: 2400,
+        absRate: 12,
+        reduction: 55,
+        chairPrice: 2490,
+        deskPrice: 3600,
+        silenceCount: 2,
+        nr17Risk: 35000
+      },
+      ops: {
+        mktRate: 28,
+        freelance: 2200,
+        aiCost: 480,
+        hitlPct: 25
+      }
+    };
+
+    let roiChartInstance = null;
+    let opsChartInstance = null;
+
+    /* --- HELPERS --- */
+    function getTokenColor(tokenName) {
+      return getComputedStyle(document.documentElement).getPropertyValue(tokenName).trim();
+    }
+
+    function formatUSD(amount) {
+      const rounded = Math.round(Number(amount) || 0);
+      return `USD ` + rounded.toLocaleString(`es-ES`);
+    }
+
+    function saveState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        window.notebookAppApi.setAppState(appState).catch(function() {});
+      }
+    }
+
+    /* --- CHAPTER 01: AI CANVAS USE CASES --- */
+    function selectUseCase(idx) {
+      appState.selectedUseCase = idx;
+      for (let i = 0; i < USE_CASES.length; i++) {
+        const btn = document.getElementById(`uc-btn-` + i);
+        if (btn) {
+          btn.classList.toggle(`is-selected`, i === idx);
+        }
+        const chip = document.getElementById(`mx-chip-` + i);
+        if (chip) {
+          chip.classList.toggle(`is-active`, i === idx);
+        }
+      }
+      const uc = USE_CASES[idx];
+      const panel = document.getElementById(`uc-detail-panel`);
+      if (panel && uc) {
+        panel.innerHTML = `
+          <div class="dossier-bar">
+            <div class="dossier-bar-left">
+              <span class="index-num">CASO ${uc.code}</span>
+              <span class="tag tag-petrol">${uc.type}</span>
+            </div>
+            <span class="tag tag-warm">${uc.quadrant}</span>
+          </div>
+          <h3 class="subhead-title">${uc.title}</h3>
+          <div style="display: grid; gap: var(--space-sm); margin-top: var(--space-md);">
+            <div>
+              <div class="dossier-meta">Problema Operativo</div>
+              <p class="muted-note">${uc.problem}</p>
+            </div>
+            <div>
+              <div class="dossier-meta">Solución de IA</div>
+              <p class="muted-note">${uc.solution}</p>
+            </div>
+            <div class="aside-box" style="margin-top: var(--space-xs);">
+              <div class="dossier-meta">Supervisión Humana (Human-in-the-Loop)</div>
+              <p class="muted-note" style="margin-top: var(--space-xs);">${uc.hitl}</p>
+            </div>
+            <div class="status-banner positive">
+              <span>${uc.metrics}</span>
+            </div>
+          </div>
+        `;
+      }
+      saveState();
+    }
+
+    /* --- CHAPTER 02: LGPD CHECKLIST --- */
+    function toggleGovernanceCheck(index, checked) {
+      appState.lgpdChecks[index] = Boolean(checked);
+      renderGovernanceChecklist();
+      saveState();
+    }
+
+    function renderGovernanceChecklist() {
+      let count = 0;
+      for (let i = 0; i < appState.lgpdChecks.length; i++) {
+        const box = document.getElementById(`chk-lgpd-` + i);
+        if (box) box.checked = Boolean(appState.lgpdChecks[i]);
+        if (appState.lgpdChecks[i]) count++;
+      }
+      const badge = document.getElementById(`lgpd-score-badge`);
+      if (badge) {
+        badge.textContent = count + ` / 5 Verificados`;
+        badge.className = count === 5 ? `tag tag-positive` : `tag tag-petrol`;
+      }
+      const banner = document.getElementById(`lgpd-status-banner`);
+      if (banner) {
+        if (count === 5) {
+          banner.className = `status-banner positive`;
+          banner.innerHTML = `<span>Aprobado para distribución: Cumplimiento total de LGPD, veracidad NR-17 y trazabilidad HITL.</span>`;
+        } else {
+          banner.className = `status-banner warning`;
+          banner.innerHTML = `<span>Pendiente (${5 - count} controles): Completa todas las verificaciones antes de publicar o enviar a clientes.</span>`;
+        }
+      }
+    }
+
+    /* --- CHAPTER 03: MULTICHANNEL VOICE STUDIO --- */
+    function setStudioChannel(channel) {
+      appState.studioChannel = channel;
+      const channels = [`linkedin`, `instagram`, `email`, `prompt`];
+      channels.forEach(function(ch) {
+        const btn = document.getElementById(`ch-btn-` + ch);
+        if (btn) {
+          btn.className = ch === channel ? `btn btn-active` : `btn btn-secondary`;
+        }
+      });
+      updateVoiceStudio();
+    }
+
+    function updateVoiceStudio() {
+      const topicEl = document.getElementById(`studio-topic`);
+      const angleEl = document.getElementById(`studio-angle`);
+      if (topicEl) appState.studioTopic = topicEl.value;
+      if (angleEl) appState.studioAngle = angleEl.value;
+
+      const ch = appState.studioChannel;
+      const topicData = STUDIO_TEMPLATES[appState.studioTopic] || STUDIO_TEMPLATES.ler;
+
+      const badge = document.getElementById(`studio-channel-badge`);
+      const meta = document.getElementById(`studio-audience-meta`);
+      const output = document.getElementById(`studio-generated-text`);
+      const visualPrompt = document.getElementById(`studio-visual-prompt`);
+
+      if (visualPrompt) {
+        visualPrompt.textContent = topicData.visual;
+      }
+
+      if (ch === `prompt`) {
+        if (badge) badge.textContent = `Prompt Maestro Gem / GPT`;
+        if (meta) meta.textContent = `Instrucciones de sistema para el equipo de 4 personas`;
+        if (output) output.textContent = GEM_MASTER_PROMPT;
+      } else {
+        const labels = {
+          linkedin: { tag: `LinkedIn B2B`, aud: `Decisores C-Level, RR. HH., Facilities y Arquitectos` },
+          instagram: { tag: `Instagram / TikTok`, aud: `Profesionales híbridos y cultura de bienestar` },
+          email: { tag: `E-mail Nutrición`, aud: `Leads B2B en negociación (CTA consultivo)` }
+        };
+        if (badge && labels[ch]) badge.textContent = labels[ch].tag;
+        if (meta && labels[ch]) meta.textContent = labels[ch].aud;
+        if (output) {
+          output.textContent = topicData[ch][appState.studioAngle] || ``;
+        }
+      }
+      saveState();
+    }
+
+    function copyStudioOutput() {
+      const output = document.getElementById(`studio-generated-text`);
+      const btn = document.getElementById(`copy-studio-btn`);
+      if (!output || !btn) return;
+      const text = output.textContent || ``;
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === `function`) {
+        navigator.clipboard.writeText(text).then(function() {
+          btn.textContent = `Copiado al portapapeles`;
+          setTimeout(function() { btn.textContent = `Copiar texto`; }, 1800);
+        }).catch(function() {
+          btn.textContent = `Listo para copiar`;
+        });
+      } else {
+        btn.textContent = `Listo para selección manual`;
+      }
+    }
+
+    /* --- CHAPTER 04: CATALOG & COMMERCIAL POLICY --- */
+    function filterCatalog(line) {
+      appState.catalogFilter = line;
+      [`all`, `ergopro`, `smartdesk`, `silence`].forEach(function(key) {
+        const btn = document.getElementById(`cat-btn-` + key);
+        if (btn) btn.className = key === line ? `btn btn-active` : `btn btn-secondary`;
+      });
+      renderCatalog();
+      saveState();
+    }
+
+    function renderCatalog() {
+      const grid = document.getElementById(`catalog-grid`);
+      if (!grid) return;
+      const filtered = PRODUCTS.filter(function(p) {
+        return appState.catalogFilter === `all` || p.line === appState.catalogFilter;
+      });
+      grid.innerHTML = filtered.map(function(p) {
+        return `
+          <article class="figure-card product-wrapper">
+            <div class="product-inner">
+              <div>
+                <span class="tag tag-petrol">${p.lineLabel}</span>
+                <h3 class="subhead-title" style="margin-top: var(--space-sm);">${p.name}</h3>
+                <p class="muted-note" style="margin-top: var(--space-xs);"><strong>Perfil:</strong> ${p.profile}</p>
+                <p class="muted-note" style="margin-top: var(--space-xs);">${p.specs}</p>
+              </div>
+              <div style="display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-sm); border-top: 1px solid var(--outline-variant); padding-top: var(--space-sm);">
+                <div>
+                  <div class="dossier-meta">Precio Lista B2B</div>
+                  <div class="value" style="font-size: 1.5rem;">${formatUSD(p.price)}</div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: var(--space-xs);">
+                  <span class="tag tag-positive">${p.cert}</span>
+                  <span class="muted-note">Garantía: ${p.warranty}</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function evaluateCommercialPolicy() {
+      const valEl = document.getElementById(`pol-order-value`);
+      const posEl = document.getElementById(`pol-positions`);
+      const regEl = document.getElementById(`pol-region`);
+      const silEl = document.getElementById(`pol-includes-silence`);
+      const box = document.getElementById(`policy-result-box`);
+      if (!valEl || !posEl || !regEl || !silEl || !box) return;
+
+      const orderValue = Number(valEl.value) || 0;
+      const positions = Number(posEl.value) || 0;
+      const region = regEl.value;
+      const hasSilence = silEl.value === `yes`;
+
+      const billing = orderValue < 10000
+        ? `Facturación a 30 días o tarjeta corporativa hasta 6x sin interés.`
+        : `Facturación corporativa 30/60/90 días vía boleto bancario (CNPJ activo > 2 años y aprobación de crédito).`;
+
+      const cifEligible = orderValue > 35000 && region === `se_s`;
+      const freight = cifEligible
+        ? `Flete CIF gratuito (pagado por Taranis Black) por superar USD 35.000 en capitales Sur/Sudeste.`
+        : `Flete compartido o modalidad FOB con transportadoras homologadas.`;
+
+      const customEligible = positions > 30;
+      const customNote = customEligible
+        ? `Personalización sin costo de mesh y maderas (> 30 posiciones), añadiendo +5 días hábiles.`
+        : `Acabados estándar de catálogo (personalización gratuita disponible a partir de 31 posiciones).`;
+
+      let leadTime = region === `se_s`
+        ? `5 a 8 días útiles (stock) · 15 días útiles (personalizado)`
+        : `12 a 20 días útiles`;
+      if (customEligible && region === `se_s`) {
+        leadTime = `10 a 13 días útiles (incluye +5 días por personalización > 30 posiciones)`;
+      }
+      const silenceNote = hasSilence
+        ? ` Requiere programación de equipo técnico especializado para montaje Silence (4 horas por cabina).`
+        : ``;
+
+      box.innerHTML = `
+        <div class="dossier-meta">Dictamen Operativo y Documental NR-17</div>
+        <ul style="margin: var(--space-sm) 0 0; padding-left: 1.15rem; display: grid; gap: var(--space-xs); font-size: 0.9rem;">
+          <li><strong>Condición de pago:</strong> ${billing}</li>
+          <li><strong>Logística CIF/FOB:</strong> ${freight}</li>
+          <li><strong>Acabados y plazo:</strong> ${customNote} Plazo base: ${leadTime}.${silenceNote}</li>
+          <li><strong>Respaldo NR-17:</strong> Incluye Informe Ergonómico en PDF firmado por Ingeniero de Seguridad y Ergonomista acreditado.</li>
+        </ul>
+      `;
+    }
+
+    /* --- CHAPTER 05: SIMULATOR A (ROI & LER/DORT ABSENTEEISM) --- */
+    function syncSeatsFromSlider(val) {
+      const num = document.getElementById(`num-seats`);
+      if (num) num.value = val;
+      recalcRoiSimulator();
+    }
+    function syncSeatsFromNumber(val) {
+      const sl = document.getElementById(`slider-seats`);
+      if (sl) sl.value = Math.min(350, Math.max(5, Number(val) || 5));
+      recalcRoiSimulator();
+    }
+
+    function syncSalaryFromSlider(val) {
+      const num = document.getElementById(`num-salary`);
+      if (num) num.value = val;
+      recalcRoiSimulator();
+    }
+    function syncSalaryFromNumber(val) {
+      const sl = document.getElementById(`slider-salary`);
+      if (sl) sl.value = Math.min(8000, Math.max(800, Number(val) || 800));
+      recalcRoiSimulator();
+    }
+
+    function syncAbsFromSlider(val) {
+      const num = document.getElementById(`num-abs-rate`);
+      if (num) num.value = val;
+      recalcRoiSimulator();
+    }
+    function syncAbsFromNumber(val) {
+      const sl = document.getElementById(`slider-abs-rate`);
+      if (sl) sl.value = Math.min(30, Math.max(2, Number(val) || 2));
+      recalcRoiSimulator();
+    }
+
+    function syncRedFromSlider(val) {
+      const num = document.getElementById(`num-reduction`);
+      if (num) num.value = val;
+      recalcRoiSimulator();
+    }
+    function syncRedFromNumber(val) {
+      const sl = document.getElementById(`slider-reduction`);
+      if (sl) sl.value = Math.min(80, Math.max(15, Number(val) || 15));
+      recalcRoiSimulator();
+    }
+
+    function applyRoiPreset(preset) {
+      const presets = {
+        ti: { seats: 30, salary: 3200, absRate: 10, reduction: 60, chairPrice: `2490`, deskPrice: `4800`, silenceCount: 1, nr17Risk: 25000 },
+        mid: { seats: 60, salary: 2400, absRate: 12, reduction: 55, chairPrice: `2490`, deskPrice: `3600`, silenceCount: 2, nr17Risk: 35000 },
+        taranis: { seats: 280, salary: 2200, absRate: 22.5, reduction: 50, chairPrice: `1890`, deskPrice: `2700`, silenceCount: 6, nr17Risk: 120000 }
+      };
+      const p = presets[preset];
+      if (!p) return;
+      const setVal = function(id, v) { const el = document.getElementById(id); if (el) el.value = v; };
+      setVal(`num-seats`, p.seats);
+      setVal(`slider-seats`, p.seats);
+      setVal(`num-salary`, p.salary);
+      setVal(`slider-salary`, p.salary);
+      setVal(`num-abs-rate`, p.absRate);
+      setVal(`slider-abs-rate`, p.absRate);
+      setVal(`num-reduction`, p.reduction);
+      setVal(`slider-reduction`, p.reduction);
+      setVal(`roi-chair-tier`, p.chairPrice);
+      setVal(`roi-desk-tier`, p.deskPrice);
+      setVal(`roi-silence-count`, p.silenceCount);
+      setVal(`roi-nr17-risk`, p.nr17Risk);
+      recalcRoiSimulator();
+    }
+
+    function recalcRoiSimulator() {
+      const seats = Math.max(1, Number((document.getElementById(`num-seats`) || {}).value) || 60);
+      const salary = Math.max(100, Number((document.getElementById(`num-salary`) || {}).value) || 2400);
+      const absRate = Math.max(0, Number((document.getElementById(`num-abs-rate`) || {}).value) || 12);
+      const reduction = Math.max(0, Number((document.getElementById(`num-reduction`) || {}).value) || 55);
+      const chairPrice = Number((document.getElementById(`roi-chair-tier`) || {}).value) || 2490;
+      const deskPrice = Number((document.getElementById(`roi-desk-tier`) || {}).value) || 0;
+      const silenceCount = Math.max(0, Number((document.getElementById(`roi-silence-count`) || {}).value) || 0);
+      const nr17Risk = Math.max(0, Number((document.getElementById(`roi-nr17-risk`) || {}).value) || 0);
+
+      appState.roi = { seats, salary, absRate, reduction, chairPrice, deskPrice, silenceCount, nr17Risk };
+
+      const lblSeats = document.getElementById(`lbl-seats-val`);
+      const lblSalary = document.getElementById(`lbl-salary-val`);
+      const lblAbs = document.getElementById(`lbl-abs-val`);
+      const lblRed = document.getElementById(`lbl-red-val`);
+      if (lblSeats) lblSeats.textContent = seats;
+      if (lblSalary) lblSalary.textContent = formatUSD(salary);
+      if (lblAbs) lblAbs.textContent = absRate.toFixed(1) + `%`;
+      if (lblRed) lblRed.textContent = reduction + `%`;
+
+      /* Calculations grounded in Taranis Black technical documents:
+         1. Invisible cost per LER/DORT or avoidable turnover event = 3x monthly salary
+         2. Sit-Stand cognitive gain = conservative 4% effective productivity value when desks are included (15-22% cognitive lift on active hours)
+         3. Silence acoustic recovery = 23m15s per interruption -> 0.5h/day saved per shared booth team (conservative 800 USD/yr per seat served up to 12 seats/booth)
+         4. NR-17 avoided penalty amortized over 36 months (realized in Year 1 compliance)
+      */
+      const capex = (seats * (chairPrice + deskPrice)) + (silenceCount * 21000);
+      const affectedCasesYear = seats * (absRate / 100);
+      const costPerCase = salary * 3;
+      const annualLerSavings = affectedCasesYear * costPerCase * (reduction / 100);
+
+      const sitStandBoost = deskPrice > 0 ? (seats * salary * 12 * 0.035) : 0;
+      const acousticBoost = silenceCount > 0 ? (Math.min(seats, silenceCount * 15) * salary * 12 * 0.025) : 0;
+      const annualBenefit = annualLerSavings + sitStandBoost + acousticBoost;
+
+      const total36mBenefit = (annualBenefit * 3) + nr17Risk;
+      const net36m = total36mBenefit - capex;
+      const roiPct36m = capex > 0 ? ((net36m / capex) * 100) : 0;
+
+      const monthlyBenefit = (annualBenefit + (nr17Risk / 3)) / 12;
+      const paybackMonths = monthlyBenefit > 0 ? (capex / monthlyBenefit) : 0;
+
+      const outCapex = document.getElementById(`out-capex`);
+      const outBenefit = document.getElementById(`out-annual-benefit`);
+      const outBreakdown = document.getElementById(`out-benefit-breakdown`);
+      const outPayback = document.getElementById(`out-payback`);
+      const outRoi36m = document.getElementById(`out-roi-36m`);
+      const commTag = document.getElementById(`roi-commercial-tag`);
+
+      if (outCapex) outCapex.textContent = formatUSD(capex);
+      if (outBenefit) outBenefit.textContent = formatUSD(annualBenefit);
+      if (outBreakdown) {
+        outBreakdown.textContent = `LER/DORT: ` + formatUSD(annualLerSavings) + ` + Foco/Acústica: ` + formatUSD(sitStandBoost + acousticBoost);
+      }
+      if (outPayback) outPayback.textContent = paybackMonths.toFixed(1) + ` meses`;
+      if (outRoi36m) outRoi36m.textContent = `ROI 36 meses: ` + Math.round(roiPct36m) + `%`;
+
+      if (commTag) {
+        const cifMsg = capex > 35000 ? `Aplica Flete CIF gratuito (Sur/Sudeste)` : `Flete FOB / compartido`;
+        const customMsg = seats > 30 ? `Personalización mesh sin costo (>30 puestos)` : `Acabados estándar`;
+        commTag.textContent = cifMsg + ` · ` + customMsg + ` · Incluye Informe Técnico NR-17 en PDF.`;
+      }
+
+      renderRoiChart(capex, monthlyBenefit);
+      saveState();
+    }
+
+    function renderRoiChart(capex, monthlyBenefit) {
+      const canvas = document.getElementById(`roiChart`);
+      if (!canvas || typeof Chart === `undefined`) return;
+
+      const months = [];
+      const netFlow = [];
+      const zeroLine = [];
+      for (let m = 0; m <= 36; m += 3) {
+        months.push(`M` + m);
+        netFlow.push(Math.round(-capex + (monthlyBenefit * m)));
+        zeroLine.push(0);
+      }
+
+      const data1 = getTokenColor(`--data-1`);
+      const data3 = getTokenColor(`--data-3`);
+      const ctxColor = getTokenColor(`--data-context`);
+
+      if (roiChartInstance) {
+        roiChartInstance.data.labels = months;
+        roiChartInstance.data.datasets[0].data = netFlow;
+        roiChartInstance.data.datasets[1].data = zeroLine;
+        roiChartInstance.update();
+        return;
+      }
+
+      roiChartInstance = new Chart(canvas, {
+        type: `line`,
+        data: {
+          labels: months,
+          datasets: [
+            {
+              label: `Flujo Neto Acumulado (USD)`,
+              data: netFlow,
+              borderColor: data1,
+              backgroundColor: data3,
+              borderWidth: 2.5,
+              pointRadius: 3.5,
+              tension: 0.15
+            },
+            {
+              label: `Punto de Equilibrio (USD 0)`,
+              data: zeroLine,
+              borderColor: ctxColor,
+              borderDash: [5, 5],
+              borderWidth: 1.5,
+              pointRadius: 0
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: `top` }
+          },
+          scales: {
+            y: {
+              ticks: {
+                callback: function(value) { return `USD ` + Math.round(value / 1000) + `k`; }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    /* --- CHAPTER 05: SIMULATOR B (OPERATIONAL VIABILITY FOR 4-PERSON TEAM) --- */
+    function syncMktRateFromSlider(val) {
+      const num = document.getElementById(`num-mkt-rate`);
+      if (num) num.value = val;
+      recalcOpsSimulator();
+    }
+    function syncMktRateFromNumber(val) {
+      const sl = document.getElementById(`slider-mkt-rate`);
+      if (sl) sl.value = Math.min(80, Math.max(15, Number(val) || 15));
+      recalcOpsSimulator();
+    }
+
+    function syncFreelanceFromSlider(val) {
+      const num = document.getElementById(`num-freelance`);
+      if (num) num.value = val;
+      recalcOpsSimulator();
+    }
+    function syncFreelanceFromNumber(val) {
+      const sl = document.getElementById(`slider-freelance`);
+      if (sl) sl.value = Math.min(8000, Math.max(0, Number(val) || 0));
+      recalcOpsSimulator();
+    }
+
+    function syncAiCostFromSlider(val) {
+      const num = document.getElementById(`num-ai-cost`);
+      if (num) num.value = val;
+      recalcOpsSimulator();
+    }
+    function syncAiCostFromNumber(val) {
+      const sl = document.getElementById(`slider-ai-cost`);
+      if (sl) sl.value = Math.min(2500, Math.max(100, Number(val) || 100));
+      recalcOpsSimulator();
+    }
+
+    function syncHitlFromSlider(val) {
+      const num = document.getElementById(`num-hitl-pct`);
+      if (num) num.value = val;
+      recalcOpsSimulator();
+    }
+    function syncHitlFromNumber(val) {
+      const sl = document.getElementById(`slider-hitl-pct`);
+      if (sl) sl.value = Math.min(50, Math.max(10, Number(val) || 10));
+      recalcOpsSimulator();
+    }
+
+    function recalcOpsSimulator() {
+      const mktRate = Math.max(5, Number((document.getElementById(`num-mkt-rate`) || {}).value) || 28);
+      const freelance = Math.max(0, Number((document.getElementById(`num-freelance`) || {}).value) || 2200);
+      const aiCost = Math.max(10, Number((document.getElementById(`num-ai-cost`) || {}).value) || 480);
+      const hitlPct = Math.max(5, Math.min(60, Number((document.getElementById(`num-hitl-pct`) || {}).value) || 25));
+
+      appState.ops = { mktRate, freelance, aiCost, hitlPct };
+
+      const lblRate = document.getElementById(`lbl-mkt-rate`);
+      const lblFree = document.getElementById(`lbl-freelance`);
+      const lblAi = document.getElementById(`lbl-ai-cost`);
+      const lblHitl = document.getElementById(`lbl-hitl-pct`);
+      if (lblRate) lblRate.textContent = formatUSD(mktRate);
+      if (lblFree) lblFree.textContent = formatUSD(freelance);
+      if (lblAi) lblAi.textContent = formatUSD(aiCost);
+      if (lblHitl) lblHitl.textContent = hitlPct + `%`;
+
+      /* Baseline weekly hours for 4-person team:
+         Copywriting multicanal: 52h -> automated draft + HITL = 52 * (0.20 + hitlPct/100)
+         Design coordination / assets: 36h -> internal AI visual + HITL = 36 * (0.18 + hitlPct/100)
+         Social response triage (>24h): 28h -> Gem triage + HITL = 28 * (0.15 + hitlPct/100)
+      */
+      const baseHours = [52, 36, 28];
+      const aiHours = [
+        Math.round(52 * (0.20 + hitlPct / 100)),
+        Math.round(36 * (0.18 + hitlPct / 100)),
+        Math.round(28 * (0.15 + hitlPct / 100))
+      ];
+      const savedWeekly = (baseHours[0] + baseHours[1] + baseHours[2]) - (aiHours[0] + aiHours[1] + aiHours[2]);
+      const savedMonthlyHours = Math.max(0, savedWeekly * 4.33);
+
+      const monthlyTimeValue = savedMonthlyHours * mktRate;
+      const monthlyFreelanceSavings = freelance * 0.75;
+      const annualGrossBenefit = (monthlyTimeValue + monthlyFreelanceSavings) * 12;
+      const annualAiCost = aiCost * 12;
+      const annualNet = annualGrossBenefit - annualAiCost;
+      const opsRoi = annualAiCost > 0 ? ((annualNet / annualAiCost) * 100) : 0;
+
+      const outHours = document.getElementById(`out-ops-hours`);
+      const outSla = document.getElementById(`out-ops-sla`);
+      const outNet = document.getElementById(`out-ops-net`);
+      const outRoi = document.getElementById(`out-ops-roi`);
+
+      if (outHours) outHours.textContent = Math.round(savedMonthlyHours) + ` h/mes`;
+      if (outSla) outSla.textContent = hitlPct <= 35 ? `< 2 horas` : `~ 3,5 horas`;
+      if (outNet) outNet.textContent = formatUSD(annualNet);
+      if (outRoi) outRoi.textContent = `ROI Proyecto IA: ` + Math.round(opsRoi) + `%`;
+
+      renderOpsChart(baseHours, aiHours);
+      saveState();
+    }
+
+    function renderOpsChart(baseHours, aiHours) {
+      const canvas = document.getElementById(`opsChart`);
+      if (!canvas || typeof Chart === `undefined`) return;
+
+      const dataCtx = getTokenColor(`--data-context`);
+      const data1 = getTokenColor(`--data-1`);
+
+      if (opsChartInstance) {
+        opsChartInstance.data.datasets[0].data = baseHours;
+        opsChartInstance.data.datasets[1].data = aiHours;
+        opsChartInstance.update();
+        return;
+      }
+
+      opsChartInstance = new Chart(canvas, {
+        type: `bar`,
+        data: {
+          labels: [`Redacción Multicanal`, `Activos Visuales`, `Respuestas en Redes`],
+          datasets: [
+            {
+              label: `Horas/Semana Actuales`,
+              data: baseHours,
+              backgroundColor: dataCtx
+            },
+            {
+              label: `Horas/Semana con IA + HITL`,
+              data: aiHours,
+              backgroundColor: data1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: `top` }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: `Horas semanales (equipo de 4 personas)` }
+            }
+          }
+        }
+      });
+    }
+
+    /* --- EXPORT & TWO-STEP INLINE RESET --- */
+    function exportExecutiveSummary() {
+      const outCapex = (document.getElementById(`out-capex`) || {}).textContent || `USD 0`;
+      const outBenefit = (document.getElementById(`out-annual-benefit`) || {}).textContent || `USD 0`;
+      const outPayback = (document.getElementById(`out-payback`) || {}).textContent || `0 meses`;
+      const outRoi = (document.getElementById(`out-roi-36m`) || {}).textContent || ``;
+      const outOpsHours = (document.getElementById(`out-ops-hours`) || {}).textContent || `0 h/mes`;
+      const outOpsNet = (document.getElementById(`out-ops-net`) || {}).textContent || `USD 0`;
+      const checksDone = appState.lgpdChecks.filter(Boolean).length;
+
+      const report = [
+        `TARANIS BLACK — RESUMEN EJECUTIVO DE ESTRATEGIA IA, GOBERNANZA Y ROI NR-17`,
+        `=========================================================================`,
+        `1. CONTEXTO CORPORATIVO BASE`,
+        `- Facturación anual: USD 48,0M | Colaboradores: 280 | Turnover general: 22,5%`,
+        `- Célula de Marketing (Ruta 2): 4 personas (LinkedIn, Instagram, TikTok, Blog)`,
+        ``,
+        `2. GOBERNANZA LGPD Y SUPERVISIÓN HUMANA (RUTA 0)`,
+        `- Controles LGPD / HITL verificados en sesión: ${checksDone} / 5`,
+        `- Comité: Marketing, DPO/Jurídico, People Analytics, Seguridad TI y Ergonomista Jefe`,
+        ``,
+        `3. PROYECCIÓN FINANCIERA ERGONÓMICA (SIMULADOR A)`,
+        `- Puestos equipados: ${appState.roi.seats} | Salario medio: ${formatUSD(appState.roi.salary)}`,
+        `- Incidencia LER/DORT: ${appState.roi.absRate}% | Reducción esperada: ${appState.roi.reduction}%`,
+        `- Inversión CapEx estimada: ${outCapex}`,
+        `- Ahorro anual (LER/DORT + Foco/Acústica): ${outBenefit}`,
+        `- Payback proyectado: ${outPayback} (${outRoi})`,
+        ``,
+        `4. VIABILIDAD OPERATIVA IA EN MARKETING (SIMULADOR B)`,
+        `- Capacidad liberada: ${outOpsHours} | SLA redes: < 2 horas`,
+        `- Beneficio neto anual proyectado: ${outOpsNet}`
+      ].join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: report,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `taranis_black_resumen_ejecutivo.txt`
+        });
+      }
+      const status = document.getElementById(`persistence-status`);
+      if (status) {
+        status.textContent = `Resumen ejecutivo descargado correctamente.`;
+      }
+    }
+
+    function handleResetClick(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Confirmar restablecimiento`;
+        setTimeout(function() {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Restablecer parámetros`;
+          }
+        }, 4000);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Restablecer parámetros`;
+
+      appState.lgpdChecks = [false, false, false, false, false];
+      renderGovernanceChecklist();
+      selectUseCase(0);
+      filterCatalog(`all`);
+      setStudioChannel(`linkedin`);
+      applyRoiPreset(`mid`);
+
+      const setOps = function(id, v) { const el = document.getElementById(id); if (el) el.value = v; };
+      setOps(`num-mkt-rate`, 28);
+      setOps(`slider-mkt-rate`, 28);
+      setOps(`num-freelance`, 2200);
+      setOps(`slider-freelance`, 2200);
+      setOps(`num-ai-cost`, 480);
+      setOps(`slider-ai-cost`, 480);
+      setOps(`num-hitl-pct`, 25);
+      setOps(`slider-hitl-pct`, 25);
+      recalcOpsSimulator();
+
+      const status = document.getElementById(`persistence-status`);
+      if (status) status.textContent = `Parámetros restablecidos a la línea base oficial de Taranis Black.`;
+      saveState();
+    }
+
+    /* --- INTERSECTION OBSERVER FOR REVEALS --- */
+    function initRevealObserver() {
+      const sections = document.querySelectorAll(`.reveal-section`);
+      if (!(`IntersectionObserver` in window)) {
+        sections.forEach(function(s) { s.classList.add(`is-visible`); });
+        return;
+      }
+      const observer = new IntersectionObserver(function(entries, obs) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      sections.forEach(function(s) { observer.observe(s); });
+    }
+
+    /* --- INITIALIZATION --- */
+    function applyRestoredState(saved) {
+      if (!saved || typeof saved !== `object`) return;
+      if (typeof saved.selectedUseCase === `number`) appState.selectedUseCase = saved.selectedUseCase;
+      if (Array.isArray(saved.lgpdChecks) && saved.lgpdChecks.length === 5) appState.lgpdChecks = saved.lgpdChecks;
+      if (typeof saved.studioChannel === `string`) appState.studioChannel = saved.studioChannel;
+      if (typeof saved.studioTopic === `string`) appState.studioTopic = saved.studioTopic;
+      if (typeof saved.studioAngle === `string`) appState.studioAngle = saved.studioAngle;
+      if (typeof saved.catalogFilter === `string`) appState.catalogFilter = saved.catalogFilter;
+
+      const topicEl = document.getElementById(`studio-topic`);
+      const angleEl = document.getElementById(`studio-angle`);
+      if (topicEl) topicEl.value = appState.studioTopic;
+      if (angleEl) angleEl.value = appState.studioAngle;
+
+      if (saved.roi) {
+        const setPair = function(numId, slId, val) {
+          const n = document.getElementById(numId);
+          const s = document.getElementById(slId);
+          if (n && val !== undefined) n.value = val;
+          if (s && val !== undefined) s.value = val;
+        };
+        setPair(`num-seats`, `slider-seats`, saved.roi.seats);
+        setPair(`num-salary`, `slider-salary`, saved.roi.salary);
+        setPair(`num-abs-rate`, `slider-abs-rate`, saved.roi.absRate);
+        setPair(`num-reduction`, `slider-reduction`, saved.roi.reduction);
+        const cEl = document.getElementById(`roi-chair-tier`);
+        const dEl = document.getElementById(`roi-desk-tier`);
+        const sEl = document.getElementById(`roi-silence-count`);
+        const rEl = document.getElementById(`roi-nr17-risk`);
+        if (cEl && saved.roi.chairPrice) cEl.value = String(saved.roi.chairPrice);
+        if (dEl && saved.roi.deskPrice !== undefined) dEl.value = String(saved.roi.deskPrice);
+        if (sEl && saved.roi.silenceCount !== undefined) sEl.value = saved.roi.silenceCount;
+        if (rEl && saved.roi.nr17Risk !== undefined) rEl.value = saved.roi.nr17Risk;
+      }
+
+      if (saved.ops) {
+        const setOps = function(numId, slId, val) {
+          const n = document.getElementById(numId);
+          const s = document.getElementById(slId);
+          if (n && val !== undefined) n.value = val;
+          if (s && val !== undefined) s.value = val;
+        };
+        setOps(`num-mkt-rate`, `slider-mkt-rate`, saved.ops.mktRate);
+        setOps(`num-freelance`, `slider-freelance`, saved.ops.freelance);
+        setOps(`num-ai-cost`, `slider-ai-cost`, saved.ops.aiCost);
+        setOps(`num-hitl-pct`, `slider-hitl-pct`, saved.ops.hitlPct);
+      }
+    }
+
+    async function initApp() {
+      initRevealObserver();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) {
+            applyRestoredState(saved);
+          }
+        } catch (err) {
+          /* Fallback gracefully to default baseline */
+        }
+      }
+
+      selectUseCase(appState.selectedUseCase);
+      renderGovernanceChecklist();
+      setStudioChannel(appState.studioChannel);
+      filterCatalog(appState.catalogFilter);
+      evaluateCommercialPolicy();
+      recalcRoiSimulator();
+      recalcOpsSimulator();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    if (document.readyState === `loading`) {
+      document.addEventListener(`DOMContentLoaded`, initApp);
+    } else {
+      initApp();
+    }
+  </script>
+</body>
+</html>
